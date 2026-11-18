@@ -4,15 +4,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="color-scheme" content="light dark">
-  <title>INSANIX STUDIO — Apps, Jogos e Mods Independentes</title>
+  <title>INSANIX STUDIO — Marketplace de Apps, Jogos e Mods</title>
   <meta
     name="description"
-    content="Baixe apps, jogos e mods criados pela Insanix Studio no GitHub. Tutoriais completos de instalação e apoio via doação."
+    content="Marketplace oficial da INSANIX STUDIO: baixe apps, jogos e mods independentes com tutoriais passo a passo, verificação SHA-256 e apoio comunitário."
   >
-  <meta property="og:title" content="INSANIX STUDIO — Apps, Jogos e Mods">
+  <meta property="og:title" content="INSANIX STUDIO — Marketplace">
   <meta
     property="og:description"
-    content="Projetos gratuitos criados em parceria, hospedados no GitHub com tutoriais passo a passo."
+    content="Baixe apps, jogos e mods feitos em parceria pela INSANIX STUDIO, hospedados no GitHub."
   >
   <meta property="og:type" content="website">
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
@@ -23,33 +23,60 @@
 <body>
   <a href="#main-content" class="skip-link visually-hidden">Pular para o conteúdo principal</a>
 
-  <header class="site-header">
-    <div class="container header-inner">
-      <a href="#top" class="brand-link" aria-label="INSANIX STUDIO — Início">
-        <img
-          src="assets/img/logo.svg"
-          alt="Logo da INSANIX STUDIO"
-          width="180"
-          height="48"
-          class="brand-logo"
-        >
-      </a>
+  <header class="store-header">
+    <div class="container header-bar">
+      <div class="header-left">
+        <a href="?aba=loja" class="brand-link" data-nav="loja" aria-label="INSANIX STUDIO — Loja">
+          <img
+            src="assets/img/logo.svg"
+            alt="Logo da INSANIX STUDIO"
+            width="164"
+            height="44"
+            class="brand-logo"
+          >
+        </a>
 
-      <nav class="main-nav" aria-label="Navegação principal">
-        <ul class="nav-list">
-          <li><a href="#projetos">Projetos</a></li>
-          <li><a href="#tutoriais">Como Instalar</a></li>
-          <li><a href="#apoiar">Apoiar</a></li>
-          <li><a href="#faq">Dúvidas</a></li>
-        </ul>
-      </nav>
+        <nav class="store-nav" aria-label="Navegação principal">
+          <ul class="nav-list">
+            <li>
+              <button type="button" class="nav-tab" data-nav="loja" aria-current="page">
+                Loja
+              </button>
+            </li>
+            <li>
+              <button type="button" class="nav-tab" data-nav="apoiar">
+                Apoiar
+              </button>
+            </li>
+            <li>
+              <button type="button" class="nav-tab" data-nav="ajuda">
+                Ajuda &amp; Segurança
+              </button>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      <search class="header-search" aria-label="Buscar no marketplace">
+        <label for="project-search" class="visually-hidden">Buscar apps, jogos, mods ou tags</label>
+        <svg class="search-icon" aria-hidden="true" viewBox="0 0 24 24" width="18" height="18">
+          <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
+          <path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <input
+          id="project-search"
+          type="search"
+          placeholder="Buscar apps, jogos, mods..."
+          autocomplete="off"
+        >
+      </search>
 
       <div class="header-actions">
         <button
           type="button"
           id="theme-toggle"
           class="btn btn-ghost btn-icon"
-          aria-label="Alternar tema de cores"
+          aria-label="Alternar tema claro e escuro"
           aria-pressed="false"
         >
           <svg class="icon-sun" aria-hidden="true" viewBox="0 0 24 24" width="20" height="20">
@@ -67,248 +94,273 @@
           command="show-modal"
           commandfor="donate-dialog"
         >
-          Apoiar o Estúdio
+          Doar / Pix
         </button>
       </div>
     </div>
   </header>
 
   <main id="main-content" tabindex="-1">
-    <section id="top" class="hero">
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <p class="eyebrow">Estúdio Independente • GitHub Open Hub</p>
-          <h1>Criações da <span class="gradient-text">INSANIX STUDIO</span> para baixar, jogar e modificar</h1>
-          <p class="hero-lead" id="studio-description">
-            Apps práticos, jogos autorais e mods desenvolvidos em parceria — gratuitos para a comunidade, com guias completos de instalação e atualizações direto pelo GitHub.
-          </p>
-
-          <div class="hero-cta">
-            <a href="#projetos" class="btn btn-primary btn-lg">Explorar Downloads</a>
-            <button
-              type="button"
-              class="btn btn-secondary btn-lg"
-              command="show-modal"
-              commandfor="donate-dialog"
-            >
-              Fazer uma Doação
-            </button>
-            <a
-              id="hero-github-link"
-              href="https://github.com/clevysson/insanix-studio"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="btn btn-ghost btn-lg"
-            >
-              Ver no GitHub
-            </a>
-          </div>
-
-          <dl class="stats-bar" aria-label="Resumo do catálogo">
-            <div class="stat-item">
-              <dt>Projetos publicados</dt>
-              <dd id="stat-total">0</dd>
-            </div>
-            <div class="stat-item">
-              <dt>Categorias</dt>
-              <dd>Apps • Jogos • Mods</dd>
-            </div>
-            <div class="stat-item">
-              <dt>Distribuição</dt>
-              <dd>GitHub Releases</dd>
-            </div>
-          </dl>
+    <!-- ABA 1: MARKETPLACE / LOJA -->
+    <section id="view-loja" class="store-view container" aria-labelledby="store-heading">
+      <!-- Faixa de Destaque Compacta (mantém o grid visível já na primeira tela) -->
+      <article id="spotlight-banner" class="spotlight-card" aria-label="Projeto em destaque">
+        <div class="spotlight-media">
+          <img
+            id="spotlight-cover"
+            src="assets/img/cover-app.svg"
+            alt=""
+            width="400"
+            height="225"
+            fetchpriority="high"
+          >
         </div>
-
-        <aside class="hero-card" aria-label="Sobre a dupla criadora">
-          <div class="terminal-bar" aria-hidden="true">
-            <span class="dot dot-red"></span>
-            <span class="dot dot-amber"></span>
-            <span class="dot dot-green"></span>
-            <span class="terminal-title">insanix-studio • github pages</span>
+        <div class="spotlight-body">
+          <div class="spotlight-meta">
+            <span class="badge badge-accent">Em Destaque</span>
+            <span id="spotlight-badge" class="badge">App</span>
+            <span id="spotlight-version" class="version-tag">v1.0.0</span>
           </div>
-          <div class="hero-card-body">
-            <h2>Feito por dois criadores, aberto para a galera</h2>
-            <p>
-              Todo projeto publicado aqui traz versão verificada, requisitos claros e tutorial passo a passo para ninguém travar na instalação.
-            </p>
-            <ul id="founders-list" class="founders-list"></ul>
-            <div class="security-pill">
-              <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18">
-                <path d="M12 2l7 4v6c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6l7-4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-                <path d="M9 12l2 2 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              <span>Links oficiais via GitHub Releases + verificação SHA-256</span>
+          <h1 id="store-heading">Marketplace INSANIX STUDIO</h1>
+          <p id="spotlight-text" class="spotlight-desc">
+            Baixe nossos apps, jogos e mods gratuitos com tutoriais passo a passo e verificação SHA-256.
+          </p>
+        </div>
+        <div class="spotlight-actions">
+          <button type="button" id="spotlight-open-btn" class="btn btn-primary">
+            Abrir Destaque
+          </button>
+          <a
+            id="hero-github-link"
+            href="https://github.com/clevysson/insanix-studio"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-secondary"
+          >
+            GitHub
+          </a>
+        </div>
+      </article>
+
+      <!-- Grade Principal de Marketplace: Barra Lateral de Filtros + Vitrine -->
+      <div class="marketplace-layout">
+        <aside class="store-sidebar" aria-label="Filtros do marketplace">
+          <div class="sidebar-panel">
+            <h2 class="sidebar-title">Categorias</h2>
+            <div class="category-list" role="group" aria-label="Filtrar por categoria">
+              <button type="button" class="cat-btn" data-filter="all" aria-pressed="true">
+                <span>Todos</span>
+                <span class="count-pill" id="count-all">0</span>
+              </button>
+              <button type="button" class="cat-btn" data-filter="app" aria-pressed="false">
+                <span>Apps</span>
+                <span class="count-pill" id="count-app">0</span>
+              </button>
+              <button type="button" class="cat-btn" data-filter="jogo" aria-pressed="false">
+                <span>Jogos</span>
+                <span class="count-pill" id="count-jogo">0</span>
+              </button>
+              <button type="button" class="cat-btn" data-filter="mod" aria-pressed="false">
+                <span>Mods</span>
+                <span class="count-pill" id="count-mod">0</span>
+              </button>
             </div>
           </div>
+
+          <div class="sidebar-panel">
+            <h2 class="sidebar-title">Plataforma</h2>
+            <div class="platform-pills" role="group" aria-label="Filtrar por plataforma">
+              <button type="button" class="chip-btn" data-platform="all" aria-pressed="true">Todas</button>
+              <button type="button" class="chip-btn" data-platform="windows" aria-pressed="false">Windows</button>
+              <button type="button" class="chip-btn" data-platform="linux" aria-pressed="false">Linux</button>
+              <button type="button" class="chip-btn" data-platform="android" aria-pressed="false">Android</button>
+            </div>
+          </div>
+
+          <div class="sidebar-panel">
+            <label for="sort-select" class="sidebar-title">Ordenar por</label>
+            <select id="sort-select" class="sort-select">
+              <option value="featured">Destaques primeiro</option>
+              <option value="recent">Mais recentes</option>
+              <option value="az">Nome (A–Z)</option>
+            </select>
+          </div>
+
+          <div class="sidebar-panel sidebar-donate">
+            <h2 class="sidebar-title">Fortaleça o Estúdio</h2>
+            <p class="sidebar-note">
+              Projetos 100% gratuitos. Doe qualquer valor via Pix ou Ko-fi para apoiar novas versões!
+            </p>
+            <button type="button" class="btn btn-primary btn-block" data-nav="apoiar">
+              Ver Página de Apoio
+            </button>
+          </div>
+        </aside>
+
+        <section class="store-catalog" aria-label="Resultados do catálogo">
+          <div class="catalog-toolbar">
+            <p id="results-status" class="results-status" role="status" aria-live="polite"></p>
+            <button type="button" id="clear-filters-btn" class="btn btn-ghost btn-sm" hidden>
+              Limpar filtros
+            </button>
+          </div>
+
+          <div id="projects-grid" class="store-grid"></div>
+        </section>
+      </div>
+    </section>
+
+    <!-- ABA 2: PÁGINA DEDICADA DE APOIO / DOAÇÕES -->
+    <section id="view-apoiar" class="store-view container" aria-labelledby="support-heading" hidden>
+      <div class="page-head">
+        <div>
+          <p class="eyebrow">Apoio Comunitário</p>
+          <h1 id="support-heading">Apoie a INSANIX STUDIO</h1>
+          <p class="page-lead">
+            Todos os nossos apps, jogos e mods são gratuitos. Sua doação ajuda a pagar domínio, infraestrutura de testes e impulsiona novos lançamentos.
+          </p>
+        </div>
+        <button type="button" class="btn btn-secondary" data-nav="loja">
+          Voltar para a Loja
+        </button>
+      </div>
+
+      <div class="support-grid">
+        <article class="support-card">
+          <h2>Doação via Pix (Brasil)</h2>
+          <p class="support-sub">Instantâneo e sem taxas. Copie a chave ou escaneie o QR Code.</p>
+
+          <div class="pix-box">
+            <img
+              id="page-pix-qr"
+              src="assets/img/pix-qr-placeholder.svg"
+              alt="QR Code para doação via Pix"
+              width="180"
+              height="180"
+              class="pix-qr"
+            >
+            <div class="pix-details">
+              <p id="page-pix-receiver" class="pix-receiver"></p>
+              <div class="inline-copy-box">
+                <code id="page-pix-key" class="pix-key"></code>
+                <span class="copy">
+                  <button
+                    type="button"
+                    class="copy-button btn btn-primary"
+                    command="--copy"
+                    commandfor="page-pix-key"
+                  >
+                    <svg class="icon icon-copy" aria-hidden="true" viewBox="0 0 24 24" width="16" height="16">
+                      <rect x="9" y="9" width="11" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+                      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" fill="none" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <svg class="icon icon-check" aria-hidden="true" viewBox="0 0 24 24" width="16" height="16">
+                      <path d="M5 13l4 4L19 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Copiar <span class="visually-hidden">chave Pix da página</span></span>
+                  </button>
+                  <span class="tip" role="status"></span>
+                </span>
+              </div>
+              <p id="page-pix-note" class="pix-note"></p>
+            </div>
+          </div>
+
+          <div class="other-donate-links">
+            <h3>Outras plataformas</h3>
+            <div class="donate-link-row">
+              <a id="page-livepix-link" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+                LivePix
+              </a>
+              <a id="page-kofi-link" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+                Ko-fi (Internacional)
+              </a>
+              <a id="page-sponsors-link" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">
+                GitHub Sponsors
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <aside class="support-card" aria-label="Mural de apoiadores e equipe">
+          <h2>Mural de Apoiadores</h2>
+          <p class="support-sub">
+            Quem apoia o estúdio ganha destaque aqui e nos créditos dos próximos apps e jogos.
+          </p>
+          <ul id="supporters-list" class="supporters-list"></ul>
+
+          <h3 class="mt-block">Criadores do Estúdio</h3>
+          <p id="studio-description" class="support-sub"></p>
+          <ul id="founders-list" class="founders-list"></ul>
         </aside>
       </div>
     </section>
 
-    <section id="projetos" class="section">
-      <div class="container">
-        <div class="section-header">
-          <div>
-            <p class="eyebrow">Catálogo Oficial</p>
-            <h2>Apps, Jogos e Mods</h2>
-          </div>
-          <p class="section-subtitle">
-            Filtre por tipo, pesquise por nome ou tag e abra qualquer projeto para ver o tutorial de instalação antes de baixar.
+    <!-- ABA 3: AJUDA, INSTALAÇÃO & SEGURANÇA -->
+    <section id="view-ajuda" class="store-view container" aria-labelledby="help-heading" hidden>
+      <div class="page-head">
+        <div>
+          <p class="eyebrow">Central de Confiança</p>
+          <h1 id="help-heading">Como Baixar, Instalar e Verificar</h1>
+          <p class="page-lead">
+            Todos os arquivos ficam hospedados no GitHub Releases com hash SHA-256 para você conferir a integridade antes de rodar.
           </p>
         </div>
-
-        <search class="catalog-controls" aria-label="Filtrar e buscar projetos">
-          <div class="filter-group" role="group" aria-label="Filtrar por categoria">
-            <button type="button" class="filter-btn" data-filter="all" aria-pressed="true">
-              Todos
-            </button>
-            <button type="button" class="filter-btn" data-filter="app" aria-pressed="false">
-              Apps
-            </button>
-            <button type="button" class="filter-btn" data-filter="jogo" aria-pressed="false">
-              Jogos
-            </button>
-            <button type="button" class="filter-btn" data-filter="mod" aria-pressed="false">
-              Mods
-            </button>
-          </div>
-
-          <div class="search-field">
-            <label for="project-search" class="visually-hidden">Buscar projeto por nome, tag ou plataforma</label>
-            <input
-              id="project-search"
-              type="search"
-              placeholder="Buscar app, jogo, mod ou plataforma..."
-              autocomplete="off"
-            >
-          </div>
-        </search>
-
-        <p id="results-status" class="results-status" role="status" aria-live="polite"></p>
-
-        <div id="projects-grid" class="projects-grid"></div>
+        <button type="button" class="btn btn-secondary" data-nav="loja">
+          Voltar para a Loja
+        </button>
       </div>
-    </section>
 
-    <section id="tutoriais" class="section section-alt">
-      <div class="container">
-        <div class="section-header">
-          <div>
-            <p class="eyebrow">Sem mistério</p>
-            <h2>Como baixar e instalar nossos projetos</h2>
-          </div>
-          <p class="section-subtitle">
-            Como hospedamos tudo no GitHub, cada arquivo fica organizado por versão e com passo a passo dedicado dentro do próprio card do projeto.
+      <ol class="steps-grid">
+        <li class="step-card">
+          <span class="step-number">01</span>
+          <h2>Confira os requisitos no card</h2>
+          <p>
+            Cada item da loja tem sua própria aba de <strong>Instalação</strong> e <strong>Requisitos</strong> explicando o passo a passo exato antes do download.
           </p>
-        </div>
+        </li>
+        <li class="step-card">
+          <span class="step-number">02</span>
+          <h2>Extraia o pacote completo</h2>
+          <p>
+            Nunca abra executáveis de dentro do <code>.zip</code>. Clique com o botão direito → <strong>Extrair Tudo</strong> em uma pasta dedicada.
+          </p>
+        </li>
+        <li class="step-card">
+          <span class="step-number">03</span>
+          <h2>Valide o hash SHA-256</h2>
+          <p>
+            Compare o código <code>SHA-256</code> exibido na janela do projeto com o arquivo baixado para ter 100% de garantia contra alterações.
+          </p>
+        </li>
+      </ol>
 
-        <ol class="steps-grid">
-          <li class="step-card">
-            <span class="step-number">01</span>
-            <h3>Escolha o projeto e leia o guia</h3>
-            <p>
-              Clique em <strong>Ver Tutorial &amp; Baixar</strong> no card do projeto para conferir requisitos, versões compatíveis e instruções exatas antes do download.
-            </p>
-          </li>
-          <li class="step-card">
-            <span class="step-number">02</span>
-            <h3>Baixe pelo GitHub Releases</h3>
-            <p>
-              Todos os executáveis, pacotes de jogos e arquivos de mods vêm diretamente da aba oficial de <em>Releases</em> no repositório da Insanix Studio.
-            </p>
-          </li>
-          <li class="step-card">
-            <span class="step-number">03</span>
-            <h3>Verifique e execute com segurança</h3>
-            <p>
-              Extraia os arquivos compactados antes de abrir e, se desejar, confira o hash <code>SHA-256</code> informado no modal do projeto.
-            </p>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <section id="apoiar" class="section">
-      <div class="container">
-        <div class="donate-banner">
-          <div class="donate-copy">
-            <p class="eyebrow">Incentive o projeto</p>
-            <h2>Curtiu nossos apps, jogos ou mods? Apoie a Insanix Studio!</h2>
-            <p>
-              Todos os lançamentos são gratuitos para a comunidade. Sua doação ajuda a pagar custos de domínio anual, servidores de teste e horas extras desenvolvendo novidades com meu amigo.
-            </p>
-            <div class="donate-actions">
-              <button
-                type="button"
-                class="btn btn-primary btn-lg"
-                command="show-modal"
-                commandfor="donate-dialog"
-              >
-                Doar via Pix ou Ko-fi
-              </button>
-              <a
-                id="banner-discord-link"
-                href="https://discord.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="btn btn-secondary btn-lg"
-              >
-                Entrar na Comunidade
-              </a>
-            </div>
-          </div>
-
-          <aside class="supporters-card" aria-label="Mural de apoiadores">
-            <h3>Mural de Apoiadores</h3>
-            <p class="supporters-note">Quem fortalece o estúdio ganha espaço aqui e nos créditos dos próximos lançamentos.</p>
-            <ul id="supporters-list" class="supporters-list"></ul>
-          </aside>
-        </div>
-      </div>
-    </section>
-
-    <section id="faq" class="section section-alt">
-      <div class="container faq-container">
-        <div class="section-header">
-          <div>
-            <p class="eyebrow">Perguntas Frequentes</p>
-            <h2>Dúvidas comuns</h2>
-          </div>
-        </div>
-
+      <div class="faq-block">
+        <h2>Dúvidas Frequentes</h2>
         <div class="faq-list">
           <details name="faq" class="faq-item">
             <summary>Os downloads são gratuitos e seguros?</summary>
             <div class="faq-answer">
               <p>
-                Sim! Todos os projetos publicados aqui são gratuitos e distribuídos pelos repositórios oficiais da <strong>INSANIX STUDIO</strong> no GitHub, com histórico de versões e hash SHA-256 para verificação.
+                Sim! Todos os projetos publicados aqui são gratuitos e distribuídos pelo GitHub oficial da <strong>INSANIX STUDIO</strong>, sempre acompanhados de hash SHA-256.
               </p>
             </div>
           </details>
 
           <details name="faq" class="faq-item">
-            <summary>O Windows SmartScreen apareceu ao abrir um app ou jogo novo. E agora?</summary>
+            <summary>O Windows SmartScreen apareceu ao abrir um app novo. O que fazer?</summary>
             <div class="faq-answer">
               <p>
-                Programas independentes recém-lançados sem certificado pago de assinatura podem disparar aviso padrão do SmartScreen. Confira sempre se o link veio desta página oficial e compare o hash <code>SHA-256</code> informado no tutorial do projeto.
+                Programas independentes novos sem certificado comercial pago costumam disparar esse aviso preventivo do Windows. Confira se o download veio deste site oficial e valide o hash <code>SHA-256</code> na janela do projeto antes de clicar em <em>Mais informações → Executar assim mesmo</em>.
               </p>
             </div>
           </details>
 
           <details name="faq" class="faq-item">
-            <summary>Como instalo um mod corretamente sem perder meu save?</summary>
+            <summary>Como instalar mods sem risco de perder saves?</summary>
             <div class="faq-answer">
               <p>
-                Abra o card do mod desejado e siga o tutorial específico passo a passo. Sempre recomendamos copiar sua pasta de saves para outro lugar antes de instalar ou atualizar qualquer modificação.
-              </p>
-            </div>
-          </details>
-
-          <details name="faq" class="faq-item">
-            <summary>Preciso doar para baixar os projetos?</summary>
-            <div class="faq-answer">
-              <p>
-                Não. Os downloads são liberados para todo mundo. As doações via Pix ou plataforma internacional são 100% voluntárias para incentivar a continuação dos nossos projetos.
+                Siga exatamente o tutorial dentro do item do mod e sempre faça uma cópia da sua pasta de saves antes de instalar ou atualizar modificações.
               </p>
             </div>
           </details>
@@ -321,7 +373,7 @@
     <div class="container footer-inner">
       <div class="footer-brand">
         <strong>INSANIX STUDIO</strong>
-        <p>Apps, jogos e mods independentes • Hospedado no GitHub Pages.</p>
+        <p>Marketplace independente • Apps, jogos e mods via GitHub Releases.</p>
       </div>
       <ul class="footer-links">
         <li><a id="footer-github-link" href="https://github.com/clevysson/insanix-studio" target="_blank" rel="noopener noreferrer">GitHub</a></li>
@@ -332,11 +384,11 @@
     </div>
   </footer>
 
-  <!-- Modal de Detalhes do Projeto + Tutorial de Instalação + Download -->
+  <!-- Modal de Produto (Estilo Loja / Marketplace com Abas Internas) -->
   <dialog id="project-dialog" class="modal" closedby="any" aria-labelledby="project-dialog-title">
     <div class="modal-header">
       <div class="modal-title-group">
-        <span id="project-dialog-badge" class="badge"></span>
+        <span id="project-dialog-badge" class="badge">App</span>
         <h2 id="project-dialog-title">Nome do Projeto</h2>
       </div>
       <button
@@ -353,118 +405,139 @@
     </div>
 
     <div class="modal-body">
-      <img
-        id="project-dialog-cover"
-        src="assets/img/cover-app.svg"
-        alt=""
-        width="800"
-        height="450"
-        class="modal-cover"
-      >
-
-      <p id="project-dialog-description" class="modal-description"></p>
-
-      <dl id="project-dialog-meta" class="meta-grid"></dl>
-
-      <div class="modal-actions">
-        <a
-          id="project-dialog-download"
-          href="#"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="btn btn-primary btn-lg"
+      <div class="modal-hero-strip">
+        <img
+          id="project-dialog-cover"
+          src="assets/img/cover-app.svg"
+          alt=""
+          width="400"
+          height="225"
+          class="modal-cover"
         >
-          Baixar no GitHub
-        </a>
-        <a
-          id="project-dialog-repo"
-          href="#"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="btn btn-secondary"
-        >
-          Ver Repositório
-        </a>
-        <a
-          id="project-dialog-vt"
-          href="#"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="btn btn-ghost"
-          hidden
-        >
-          Análise VirusTotal
-        </a>
-      </div>
-
-      <section class="modal-section" aria-labelledby="heading-reqs">
-        <h3 id="heading-reqs">Requisitos</h3>
-        <ul id="project-dialog-reqs" class="clean-list"></ul>
-      </section>
-
-      <section class="modal-section" aria-labelledby="heading-tutorial">
-        <h3 id="heading-tutorial">Tutorial de Instalação e Uso</h3>
-        <ol id="project-dialog-steps" class="tutorial-steps"></ol>
-
-        <div id="project-command-wrap" class="command-block" hidden>
-          <p id="command-block-label" class="command-label">Comando útil de verificação / instalação:</p>
-          <div class="copyable">
-            <span class="copy">
-              <button
-                type="button"
-                class="copy-button"
-                command="--copy"
-                commandfor="project-command-code"
-                aria-label="Copiar comando"
-              >
-                <svg class="icon icon-copy" aria-hidden="true" viewBox="0 0 24 24" width="18" height="18">
-                  <rect x="9" y="9" width="11" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
-                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" fill="none" stroke="currentColor" stroke-width="2"/>
-                </svg>
-                <svg class="icon icon-check" aria-hidden="true" viewBox="0 0 24 24" width="18" height="18">
-                  <path d="M5 13l4 4L19 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </button>
-              <span class="tip" role="status"></span>
-            </span>
-            <pre role="region" aria-labelledby="command-block-label" tabindex="0"><code id="project-command-code"></code></pre>
+        <div class="modal-hero-info">
+          <p id="project-dialog-description" class="modal-description"></p>
+          <dl id="project-dialog-meta" class="meta-grid"></dl>
+          <div class="modal-actions">
+            <a
+              id="project-dialog-download"
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-primary"
+            >
+              Baixar Agora
+            </a>
+            <a
+              id="project-dialog-repo"
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-secondary"
+            >
+              Ver no GitHub
+            </a>
+            <a
+              id="project-dialog-vt"
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-ghost"
+              hidden
+            >
+              VirusTotal
+            </a>
           </div>
         </div>
-      </section>
+      </div>
 
-      <section id="project-hash-section" class="modal-section" aria-labelledby="heading-sha">
-        <h3 id="heading-sha">Verificação de Integridade (SHA-256)</h3>
-        <div class="inline-copy-box">
-          <code id="project-dialog-sha" class="sha-code"></code>
-          <span class="copy">
-            <button
-              type="button"
-              class="copy-button btn btn-secondary"
-              command="--copy"
-              commandfor="project-dialog-sha"
-            >
-              <svg class="icon icon-copy" aria-hidden="true" viewBox="0 0 24 24" width="16" height="16">
-                <rect x="9" y="9" width="11" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
-                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" fill="none" stroke="currentColor" stroke-width="2"/>
-              </svg>
-              <svg class="icon icon-check" aria-hidden="true" viewBox="0 0 24 24" width="16" height="16">
-                <path d="M5 13l4 4L19 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              <span>Copiar <span class="visually-hidden">hash SHA-256</span></span>
-            </button>
-            <span class="tip" role="status"></span>
-          </span>
+      <!-- Abas acessíveis do Produto -->
+      <div class="product-tabs">
+        <div class="tablist" focusgroup="tablist nomemory" aria-label="Detalhes do projeto">
+          <button type="button" id="tab-overview" aria-selected="true" focusgroupstart>
+            Instalação &amp; Uso
+          </button>
+          <button type="button" id="tab-reqs" aria-selected="false">
+            Requisitos &amp; SHA-256
+          </button>
+          <button type="button" id="tab-changelog" aria-selected="false">
+            Novidades
+          </button>
         </div>
-      </section>
 
-      <section class="modal-section" aria-labelledby="heading-changelog">
-        <h3 id="heading-changelog">Novidades da Versão (Changelog)</h3>
-        <ul id="project-dialog-changelog" class="clean-list"></ul>
-      </section>
+        <div id="panel-overview" role="tabpanel" aria-labelledby="tab-overview" tabindex="0">
+          <div class="tab-panel-inner">
+            <ol id="project-dialog-steps" class="tutorial-steps"></ol>
+
+            <div id="project-command-wrap" class="command-block" hidden>
+              <p id="command-block-label" class="command-label">Comando útil de verificação / instalação:</p>
+              <div class="copyable">
+                <span class="copy">
+                  <button
+                    type="button"
+                    class="copy-button"
+                    command="--copy"
+                    commandfor="project-command-code"
+                    aria-label="Copiar comando"
+                  >
+                    <svg class="icon icon-copy" aria-hidden="true" viewBox="0 0 24 24" width="18" height="18">
+                      <rect x="9" y="9" width="11" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+                      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" fill="none" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <svg class="icon icon-check" aria-hidden="true" viewBox="0 0 24 24" width="18" height="18">
+                      <path d="M5 13l4 4L19 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                  <span class="tip" role="status"></span>
+                </span>
+                <pre role="region" aria-labelledby="command-block-label" tabindex="0"><code id="project-command-code"></code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="panel-reqs" role="tabpanel" aria-labelledby="tab-reqs" hidden>
+          <div class="tab-panel-inner">
+            <h3>Requisitos Mínimos</h3>
+            <ul id="project-dialog-reqs" class="clean-list"></ul>
+
+            <div id="project-hash-section" class="hash-wrap">
+              <h3>Verificação de Integridade (SHA-256)</h3>
+              <div class="inline-copy-box">
+                <code id="project-dialog-sha" class="sha-code"></code>
+                <span class="copy">
+                  <button
+                    type="button"
+                    class="copy-button btn btn-secondary"
+                    command="--copy"
+                    commandfor="project-dialog-sha"
+                  >
+                    <svg class="icon icon-copy" aria-hidden="true" viewBox="0 0 24 24" width="16" height="16">
+                      <rect x="9" y="9" width="11" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+                      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" fill="none" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <svg class="icon icon-check" aria-hidden="true" viewBox="0 0 24 24" width="16" height="16">
+                      <path d="M5 13l4 4L19 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Copiar <span class="visually-hidden">hash SHA-256</span></span>
+                  </button>
+                  <span class="tip" role="status"></span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="panel-changelog" role="tabpanel" aria-labelledby="tab-changelog" hidden>
+          <div class="tab-panel-inner">
+            <h3>Histórico de Atualizações</h3>
+            <ul id="project-dialog-changelog" class="clean-list"></ul>
+          </div>
+        </div>
+      </div>
     </div>
   </dialog>
 
-  <!-- Modal de Doações (Pix + Plataformas Internacionais) -->
+  <!-- Modal Rápido de Doação (acessível de qualquer lugar pelo botão do topo) -->
   <dialog id="donate-dialog" class="modal modal-compact" closedby="any" aria-labelledby="donate-dialog-title">
     <div class="modal-header">
       <div class="modal-title-group">
@@ -486,7 +559,7 @@
 
     <div class="modal-body">
       <p class="modal-description">
-        Qualquer valor ajuda a manter o domínio ativo, cobrir ferramentas e acelerar novos apps, jogos e mods!
+        Qualquer valor incentiva nossos próximos apps, jogos e mods gratuitos!
       </p>
 
       <div class="pix-box">
@@ -494,12 +567,12 @@
           id="donate-pix-qr"
           src="assets/img/pix-qr-placeholder.svg"
           alt="QR Code para doação via Pix"
-          width="180"
-          height="180"
+          width="160"
+          height="160"
           class="pix-qr"
         >
         <div class="pix-details">
-          <h3>Doar via Pix (Brasil)</h3>
+          <h3>Pix (Brasil)</h3>
           <p id="donate-pix-receiver" class="pix-receiver"></p>
           <div class="inline-copy-box">
             <code id="pix-key-value" class="pix-key"></code>
@@ -517,7 +590,7 @@
                 <svg class="icon icon-check" aria-hidden="true" viewBox="0 0 24 24" width="16" height="16">
                   <path d="M5 13l4 4L19 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-                <span>Copiar <span class="visually-hidden">chave Pix</span></span>
+                <span>Copiar <span class="visually-hidden">chave Pix do modal</span></span>
               </button>
               <span class="tip" role="status"></span>
             </span>
@@ -527,7 +600,7 @@
       </div>
 
       <div class="other-donate-links">
-        <h3>Outras formas de apoio</h3>
+        <h3>Outras plataformas</h3>
         <div class="donate-link-row">
           <a id="donate-livepix-link" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
             LivePix

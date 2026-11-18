@@ -5,26 +5,59 @@
   if (!data) return;
 
   const state = {
+    view: 'loja',
     category: 'all',
+    platform: 'all',
+    sort: 'featured',
     query: '',
   };
 
   const els = {
-    studioDescription: document.getElementById('studio-description'),
+    navButtons: Array.from(document.querySelectorAll('[data-nav]')),
+    views: {
+      loja: document.getElementById('view-loja'),
+      apoiar: document.getElementById('view-apoiar'),
+      ajuda: document.getElementById('view-ajuda'),
+    },
+    searchInput: document.getElementById('project-search'),
+    themeToggle: document.getElementById('theme-toggle'),
+    spotlightCover: document.getElementById('spotlight-cover'),
+    spotlightBadge: document.getElementById('spotlight-badge'),
+    spotlightVersion: document.getElementById('spotlight-version'),
+    spotlightText: document.getElementById('spotlight-text'),
+    spotlightOpenBtn: document.getElementById('spotlight-open-btn'),
     heroGithubLink: document.getElementById('hero-github-link'),
-    bannerDiscordLink: document.getElementById('banner-discord-link'),
+    catButtons: Array.from(document.querySelectorAll('.cat-btn')),
+    platformButtons: Array.from(document.querySelectorAll('.chip-btn')),
+    sortSelect: document.getElementById('sort-select'),
+    clearFiltersBtn: document.getElementById('clear-filters-btn'),
+    resultsStatus: document.getElementById('results-status'),
+    projectsGrid: document.getElementById('projects-grid'),
+    countAll: document.getElementById('count-all'),
+    countApp: document.getElementById('count-app'),
+    countJogo: document.getElementById('count-jogo'),
+    countMod: document.getElementById('count-mod'),
+    studioDescription: document.getElementById('studio-description'),
+    foundersList: document.getElementById('founders-list'),
+    supportersList: document.getElementById('supporters-list'),
+    pagePixQr: document.getElementById('page-pix-qr'),
+    pagePixReceiver: document.getElementById('page-pix-receiver'),
+    pagePixKey: document.getElementById('page-pix-key'),
+    pagePixNote: document.getElementById('page-pix-note'),
+    pageLivePixLink: document.getElementById('page-livepix-link'),
+    pageKofiLink: document.getElementById('page-kofi-link'),
+    pageSponsorsLink: document.getElementById('page-sponsors-link'),
+    donatePixQr: document.getElementById('donate-pix-qr'),
+    donatePixReceiver: document.getElementById('donate-pix-receiver'),
+    pixKeyValue: document.getElementById('pix-key-value'),
+    donatePixNote: document.getElementById('donate-pix-note'),
+    donateLivePixLink: document.getElementById('donate-livepix-link'),
+    donateKofiLink: document.getElementById('donate-kofi-link'),
+    donateSponsorsLink: document.getElementById('donate-sponsors-link'),
     footerGithubLink: document.getElementById('footer-github-link'),
     footerDiscordLink: document.getElementById('footer-discord-link'),
     footerYoutubeLink: document.getElementById('footer-youtube-link'),
     footerEmailLink: document.getElementById('footer-email-link'),
-    statTotal: document.getElementById('stat-total'),
-    foundersList: document.getElementById('founders-list'),
-    supportersList: document.getElementById('supporters-list'),
-    filterButtons: Array.from(document.querySelectorAll('.filter-btn')),
-    searchInput: document.getElementById('project-search'),
-    resultsStatus: document.getElementById('results-status'),
-    projectsGrid: document.getElementById('projects-grid'),
-    themeToggle: document.getElementById('theme-toggle'),
     projectDialog: document.getElementById('project-dialog'),
     donateDialog: document.getElementById('donate-dialog'),
     projectDialogBadge: document.getElementById('project-dialog-badge'),
@@ -42,13 +75,9 @@
     projectHashSection: document.getElementById('project-hash-section'),
     projectDialogSha: document.getElementById('project-dialog-sha'),
     projectDialogChangelog: document.getElementById('project-dialog-changelog'),
-    donatePixQr: document.getElementById('donate-pix-qr'),
-    donatePixReceiver: document.getElementById('donate-pix-receiver'),
-    pixKeyValue: document.getElementById('pix-key-value'),
-    donatePixNote: document.getElementById('donate-pix-note'),
-    donateLivePixLink: document.getElementById('donate-livepix-link'),
-    donateKofiLink: document.getElementById('donate-kofi-link'),
-    donateSponsorsLink: document.getElementById('donate-sponsors-link'),
+    productTabList: document.querySelector('#project-dialog .tablist'),
+    productTabs: Array.from(document.querySelectorAll('#project-dialog .tablist button')),
+    productPanels: Array.from(document.querySelectorAll('#project-dialog [role="tabpanel"]')),
   };
 
   // --- Feature detection: top-layer dialog exit fallback ---
@@ -92,7 +121,6 @@
   function setupDialogs() {
     const dialogs = [els.projectDialog, els.donateDialog].filter(Boolean);
 
-    // Fallback para browsers sem Invoker Commands (command="show-modal")
     if (!('commandForElement' in HTMLButtonElement.prototype)) {
       document.addEventListener('click', (event) => {
         const trigger = event.target.closest('button[command="show-modal"][commandfor]');
@@ -117,7 +145,6 @@
         dialog.returnValue = '';
       });
 
-      // Fallback para light-dismiss em browsers sem <dialog closedby="any">
       if (!('closedBy' in HTMLDialogElement.prototype)) {
         const outside = (e) => {
           const r = dialog.getBoundingClientRect();
@@ -143,7 +170,7 @@
     });
   }
 
-  // --- Copy button (Invoker Command + fallback + VoiceOver dedup) ---
+  // --- Copy button ---
   const copyTimers = new WeakMap();
   let lastCopyMessage = '';
 
@@ -242,8 +269,7 @@
     };
 
     try {
-      const saved = localStorage.getItem(storageKey);
-      applyTheme(saved);
+      applyTheme(localStorage.getItem(storageKey));
     } catch {
       applyTheme(null);
     }
@@ -256,69 +282,222 @@
 
     els.themeToggle?.addEventListener('click', () => {
       const current = document.documentElement.getAttribute('data-theme');
-      const isCurrentlyDark = current ? current === 'dark' : media.matches;
-      const next = isCurrentlyDark ? 'light' : 'dark';
+      const isDark = current ? current === 'dark' : media.matches;
+      const next = isDark ? 'light' : 'dark';
       applyTheme(next);
       try {
         localStorage.setItem(storageKey, next);
       } catch {
-        // Ignora caso storage esteja bloqueado
+        // Ignora
       }
     });
+  }
+
+  // --- Product Modal Tabs (focusgroup + hidden="until-found" + beforematch) ---
+  const hasNativeFocusGroup = Object.hasOwn(HTMLElement.prototype, 'focusGroup');
+
+  function selectProductTab(tab) {
+    const targetId = tab.id;
+    for (const t of els.productTabs) {
+      const selected = t === tab;
+      t.ariaSelected = String(selected);
+      t.toggleAttribute('focusgroupstart', selected);
+      if (!hasNativeFocusGroup) {
+        t.tabIndex = selected ? 0 : -1;
+      }
+    }
+    for (const panel of els.productPanels) {
+      const active = panel.getAttribute('aria-labelledby') === targetId;
+      if (active) {
+        panel.removeAttribute('hidden');
+        panel.setAttribute('tabindex', '0');
+      } else {
+        panel.setAttribute('hidden', 'until-found');
+        panel.removeAttribute('tabindex');
+      }
+    }
+    tab.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+  }
+
+  function setupProductTabs() {
+    if (!hasNativeFocusGroup && els.productTabList) {
+      els.productTabList.setAttribute('role', 'tablist');
+      for (const tab of els.productTabs) {
+        tab.setAttribute('role', 'tab');
+      }
+    }
+
+    for (const tab of els.productTabs) {
+      tab.addEventListener('click', () => selectProductTab(tab));
+    }
+
+    for (const panel of els.productPanels) {
+      panel.addEventListener('beforematch', () => {
+        const tab = document.getElementById(panel.getAttribute('aria-labelledby'));
+        if (tab) selectProductTab(tab);
+      });
+    }
+
+    if (!hasNativeFocusGroup) {
+      els.productTabList?.addEventListener('keydown', (event) => {
+        const idx = els.productTabs.indexOf(document.activeElement);
+        if (idx === -1) return;
+        let nextIdx = -1;
+        if (event.key === 'ArrowRight') nextIdx = (idx + 1) % els.productTabs.length;
+        if (event.key === 'ArrowLeft') nextIdx = (idx - 1 + els.productTabs.length) % els.productTabs.length;
+        if (event.key === 'Home') nextIdx = 0;
+        if (event.key === 'End') nextIdx = els.productTabs.length - 1;
+        if (nextIdx !== -1) {
+          event.preventDefault();
+          const targetTab = els.productTabs[nextIdx];
+          targetTab.focus();
+          selectProductTab(targetTab);
+        }
+      });
+    }
+  }
+
+  // --- Navigation between Marketplace views (Loja / Apoiar / Ajuda) ---
+  const viewTitles = {
+    loja: 'INSANIX STUDIO — Marketplace de Apps, Jogos e Mods',
+    apoiar: 'Apoiar o Estúdio | INSANIX STUDIO',
+    ajuda: 'Ajuda & Segurança | INSANIX STUDIO',
+  };
+
+  function switchView(viewName, syncUrl = true) {
+    if (!els.views[viewName]) viewName = 'loja';
+    state.view = viewName;
+
+    for (const [key, section] of Object.entries(els.views)) {
+      if (!section) continue;
+      if (key === viewName) {
+        section.removeAttribute('hidden');
+      } else {
+        section.setAttribute('hidden', '');
+      }
+    }
+
+    for (const btn of els.navButtons) {
+      if (btn.classList.contains('nav-tab')) {
+        if (btn.dataset.nav === viewName) {
+          btn.setAttribute('aria-current', 'page');
+        } else {
+          btn.removeAttribute('aria-current');
+        }
+      }
+    }
+
+    document.title = viewTitles[viewName] || viewTitles.loja;
+    if (syncUrl) syncUrlParams();
+  }
+
+  function setupNavigation() {
+    for (const btn of els.navButtons) {
+      btn.addEventListener('click', (event) => {
+        if (btn.tagName === 'A') event.preventDefault();
+        switchView(btn.dataset.nav || 'loja');
+        window.scrollTo({ top: 0, behavior: 'auto' });
+      });
+    }
   }
 
   // --- Hydrate Studio & Donations ---
   function hydrateStudioInfo() {
     const { studio, donations, projects } = data;
+
     if (els.studioDescription && studio.description) {
       els.studioDescription.textContent = studio.description;
     }
     if (els.heroGithubLink) els.heroGithubLink.href = studio.githubOrgUrl;
     if (els.footerGithubLink) els.footerGithubLink.href = studio.githubOrgUrl;
-    if (els.bannerDiscordLink) els.bannerDiscordLink.href = studio.discordUrl;
     if (els.footerDiscordLink) els.footerDiscordLink.href = studio.discordUrl;
     if (els.footerYoutubeLink) els.footerYoutubeLink.href = studio.youtubeUrl;
     if (els.footerEmailLink) els.footerEmailLink.href = `mailto:${studio.contactEmail}`;
-    if (els.statTotal) els.statTotal.textContent = String(projects.length);
 
     if (els.foundersList) {
-      const items = studio.founders.map((f) => {
-        const li = document.createElement('li');
-        const name = document.createElement('span');
-        name.className = 'founder-name';
-        name.textContent = f.name;
-        const role = document.createElement('span');
-        role.className = 'founder-role';
-        role.textContent = f.role;
-        li.append(name, role);
-        return li;
-      });
-      els.foundersList.replaceChildren(...items);
+      els.foundersList.replaceChildren(
+        ...studio.founders.map((f) => {
+          const li = document.createElement('li');
+          const name = document.createElement('span');
+          name.textContent = f.name;
+          const role = document.createElement('span');
+          role.className = 'founder-role';
+          role.textContent = f.role;
+          li.append(name, role);
+          return li;
+        }),
+      );
     }
 
     if (els.supportersList) {
-      const items = donations.supporters.map((s) => {
-        const li = document.createElement('li');
-        const name = document.createElement('span');
-        name.textContent = s.name;
-        const badge = document.createElement('span');
-        badge.className = 'badge';
-        badge.textContent = s.badge;
-        li.append(name, badge);
-        return li;
-      });
-      els.supportersList.replaceChildren(...items);
+      els.supportersList.replaceChildren(
+        ...donations.supporters.map((s) => {
+          const li = document.createElement('li');
+          const name = document.createElement('span');
+          name.textContent = s.name;
+          const badge = document.createElement('span');
+          badge.className = 'badge badge-accent';
+          badge.textContent = s.badge;
+          li.append(name, badge);
+          return li;
+        }),
+      );
     }
 
-    if (els.donatePixQr) els.donatePixQr.src = donations.pixQrImage;
-    if (els.donatePixReceiver) {
-      els.donatePixReceiver.textContent = `Beneficiário: ${donations.pixReceiverName}`;
+    // Populate both Pix modal and Apoiar page
+    const pixReceiverText = `Beneficiário: ${donations.pixReceiverName}`;
+    for (const img of [els.donatePixQr, els.pagePixQr]) {
+      if (img) img.src = donations.pixQrImage;
     }
-    if (els.pixKeyValue) els.pixKeyValue.textContent = donations.pixKey;
-    if (els.donatePixNote) els.donatePixNote.textContent = donations.pixNote;
-    if (els.donateLivePixLink) els.donateLivePixLink.href = donations.livePixUrl;
-    if (els.donateKofiLink) els.donateKofiLink.href = donations.kofiUrl;
-    if (els.donateSponsorsLink) els.donateSponsorsLink.href = donations.githubSponsorsUrl;
+    for (const el of [els.donatePixReceiver, els.pagePixReceiver]) {
+      if (el) el.textContent = pixReceiverText;
+    }
+    for (const el of [els.pixKeyValue, els.pagePixKey]) {
+      if (el) el.textContent = donations.pixKey;
+    }
+    for (const el of [els.donatePixNote, els.pagePixNote]) {
+      if (el) el.textContent = donations.pixNote;
+    }
+    for (const a of [els.donateLivePixLink, els.pageLivePixLink]) {
+      if (a) a.href = donations.livePixUrl;
+    }
+    for (const a of [els.donateKofiLink, els.pageKofiLink]) {
+      if (a) a.href = donations.kofiUrl;
+    }
+    for (const a of [els.donateSponsorsLink, els.pageSponsorsLink]) {
+      if (a) a.href = donations.githubSponsorsUrl;
+    }
+
+    // Category counts
+    const byCategory = Object.groupBy(projects, (p) => p.category);
+    if (els.countAll) els.countAll.textContent = String(projects.length);
+    if (els.countApp) els.countApp.textContent = String((byCategory.app ?? []).length);
+    if (els.countJogo) els.countJogo.textContent = String((byCategory.jogo ?? []).length);
+    if (els.countMod) els.countMod.textContent = String((byCategory.mod ?? []).length);
+
+    // Spotlight Banner
+    const spotlight = projects.find((p) => p.featured) || projects[0];
+    if (spotlight) {
+      if (els.spotlightCover) {
+        els.spotlightCover.src = spotlight.cover;
+        els.spotlightCover.alt = spotlight.coverAlt || spotlight.title;
+      }
+      if (els.spotlightBadge) {
+        els.spotlightBadge.className = getCategoryBadgeClass(spotlight.category);
+        els.spotlightBadge.textContent = spotlight.categoryLabel;
+      }
+      if (els.spotlightVersion) els.spotlightVersion.textContent = spotlight.version;
+      if (els.spotlightText) {
+        els.spotlightText.textContent = `${spotlight.title} — ${spotlight.summary}`;
+      }
+      els.spotlightOpenBtn?.addEventListener('click', () => openProjectModal(spotlight));
+    }
+  }
+
+  function getCategoryBadgeClass(category) {
+    if (category === 'jogo') return 'badge badge-jogo';
+    if (category === 'mod') return 'badge badge-mod';
+    return 'badge';
   }
 
   // --- Optional GitHub Releases API Enrichment ---
@@ -329,7 +508,7 @@
       const cached = sessionStorage.getItem(cacheKey);
       if (cached) return JSON.parse(cached);
     } catch {
-      // Sem acesso ao sessionStorage
+      // Ignora
     }
 
     try {
@@ -359,16 +538,9 @@
     }
   }
 
-  // --- Project Modal ---
+  // --- Product Modal ---
   async function openProjectModal(project) {
-    const badgeClass =
-      project.category === 'jogo'
-        ? 'badge badge-jogo'
-        : project.category === 'mod'
-          ? 'badge badge-mod'
-          : 'badge';
-
-    els.projectDialogBadge.className = badgeClass;
+    els.projectDialogBadge.className = getCategoryBadgeClass(project.category);
     els.projectDialogBadge.textContent = project.categoryLabel;
     els.projectDialogTitle.textContent = project.title;
     els.projectDialogCover.src = project.cover;
@@ -377,21 +549,22 @@
 
     const renderMeta = (version, size) => {
       const metaEntries = [
-        ['Versão atual', version],
+        ['Versão', version],
         ['Tamanho', size],
         ['Plataformas', project.platforms.join(', ')],
         ['Licença', project.license],
       ];
-      const nodes = metaEntries.map(([label, value]) => {
-        const wrap = document.createElement('div');
-        const dt = document.createElement('dt');
-        dt.textContent = label;
-        const dd = document.createElement('dd');
-        dd.textContent = value;
-        wrap.append(dt, dd);
-        return wrap;
-      });
-      els.projectDialogMeta.replaceChildren(...nodes);
+      els.projectDialogMeta.replaceChildren(
+        ...metaEntries.map(([label, value]) => {
+          const wrap = document.createElement('div');
+          const dt = document.createElement('dt');
+          dt.textContent = label;
+          const dd = document.createElement('dd');
+          dd.textContent = value;
+          wrap.append(dt, dd);
+          return wrap;
+        }),
+      );
     };
 
     renderMeta(project.version, project.size);
@@ -405,14 +578,6 @@
     } else {
       els.projectDialogVt.hidden = true;
     }
-
-    els.projectDialogReqs.replaceChildren(
-      ...project.requirements.map((req) => {
-        const li = document.createElement('li');
-        li.textContent = req;
-        return li;
-      }),
-    );
 
     els.projectDialogSteps.replaceChildren(
       ...project.tutorialSteps.map((step) => {
@@ -433,6 +598,14 @@
       els.projectCommandWrap.hidden = true;
     }
 
+    els.projectDialogReqs.replaceChildren(
+      ...project.requirements.map((req) => {
+        const li = document.createElement('li');
+        li.textContent = req;
+        return li;
+      }),
+    );
+
     if (project.sha256) {
       els.projectDialogSha.textContent = project.sha256;
       els.projectHashSection.hidden = false;
@@ -448,6 +621,7 @@
       }),
     );
 
+    if (els.productTabs[0]) selectProductTab(els.productTabs[0]);
     els.projectDialog.showModal();
 
     const live = await fetchReleaseMetadata(project);
@@ -457,160 +631,203 @@
     }
   }
 
-  // --- Catalog Filtering & Rendering ---
+  // --- Catalog Filtering & Sorting ---
   function syncUrlParams() {
     if (window.location.protocol === 'file:') return;
     const url = new URL(window.location.href);
-    if (state.category !== 'all') {
-      url.searchParams.set('cat', state.category);
-    } else {
-      url.searchParams.delete('cat');
-    }
-    if (state.query) {
-      url.searchParams.set('q', state.query);
-    } else {
-      url.searchParams.delete('q');
-    }
+    if (state.view !== 'loja') url.searchParams.set('aba', state.view);
+    else url.searchParams.delete('aba');
+
+    if (state.category !== 'all') url.searchParams.set('cat', state.category);
+    else url.searchParams.delete('cat');
+
+    if (state.platform !== 'all') url.searchParams.set('plat', state.platform);
+    else url.searchParams.delete('plat');
+
+    if (state.query) url.searchParams.set('q', state.query);
+    else url.searchParams.delete('q');
+
     window.history.replaceState({}, '', url);
+  }
+
+  function hasActiveFilters() {
+    return state.category !== 'all' || state.platform !== 'all' || state.query.trim() !== '';
   }
 
   function renderCatalog() {
     const queryLower = state.query.trim().toLowerCase();
-    const filtered = data.projects
-      .filter((project) => {
-        if (state.category !== 'all' && project.category !== state.category) {
-          return false;
-        }
-        if (!queryLower) return true;
-        const haystack = [
-          project.title,
-          project.summary,
-          project.categoryLabel,
-          ...project.platforms,
-          ...project.tags,
-        ]
-          .join(' ')
-          .toLowerCase();
-        return haystack.includes(queryLower);
-      })
-      .toSorted((a, b) => Number(Boolean(b.featured)) - Number(Boolean(a.featured)));
+
+    const filtered = data.projects.filter((project) => {
+      if (state.category !== 'all' && project.category !== state.category) {
+        return false;
+      }
+      if (state.platform !== 'all') {
+        const platText = project.platforms.join(' ').toLowerCase();
+        if (!platText.includes(state.platform)) return false;
+      }
+      if (!queryLower) return true;
+      const haystack = [
+        project.title,
+        project.summary,
+        project.categoryLabel,
+        ...project.platforms,
+        ...project.tags,
+      ]
+        .join(' ')
+        .toLowerCase();
+      return haystack.includes(queryLower);
+    });
+
+    const sorted = filtered.toSorted((a, b) => {
+      if (state.sort === 'az') {
+        return a.title.localeCompare(b.title, 'pt-BR');
+      }
+      if (state.sort === 'recent') {
+        return (b.releaseDate || '').localeCompare(a.releaseDate || '');
+      }
+      return Number(Boolean(b.featured)) - Number(Boolean(a.featured));
+    });
 
     els.resultsStatus.textContent =
-      filtered.length === 1
-        ? '1 projeto encontrado.'
-        : `${filtered.length} projetos encontrados.`;
+      sorted.length === 1
+        ? 'Exibindo 1 item na loja'
+        : `Exibindo ${sorted.length} itens na loja`;
 
-    if (filtered.length === 0) {
+    if (els.clearFiltersBtn) {
+      els.clearFiltersBtn.hidden = !hasActiveFilters();
+    }
+
+    if (sorted.length === 0) {
       const empty = document.createElement('div');
       empty.className = 'empty-state';
-      const title = document.createElement('h3');
-      title.textContent = 'Nenhum projeto encontrado para esse filtro';
+      const title = document.createElement('h2');
+      title.textContent = 'Nenhum item encontrado com esses filtros';
       const desc = document.createElement('p');
-      desc.textContent = 'Tente limpar a busca ou selecionar outra categoria acima.';
-      empty.append(title, desc);
+      desc.textContent = 'Limpe a busca ou escolha outra categoria na barra lateral.';
+      const resetBtn = document.createElement('button');
+      resetBtn.type = 'button';
+      resetBtn.className = 'btn btn-primary';
+      resetBtn.textContent = 'Mostrar tudo';
+      resetBtn.addEventListener('click', resetAllFilters);
+      empty.append(title, desc, resetBtn);
       els.projectsGrid.replaceChildren(empty);
       return;
     }
 
-    const cards = filtered.map((project) => {
+    const cards = sorted.map((project) => {
       const article = document.createElement('article');
-      article.className = 'project-card';
+      article.className = 'store-card';
 
-      const coverWrap = document.createElement('div');
-      coverWrap.className = 'card-cover-wrap';
+      const banner = document.createElement('div');
+      banner.className = 'card-banner';
       const img = document.createElement('img');
-      img.className = 'card-cover';
       img.src = project.cover;
       img.alt = project.coverAlt || project.title;
-      img.width = 800;
-      img.height = 450;
+      img.width = 400;
+      img.height = 225;
       img.loading = 'lazy';
-      coverWrap.append(img);
 
-      const body = document.createElement('div');
-      body.className = 'card-body';
-
-      const topRow = document.createElement('div');
-      topRow.className = 'card-top-row';
-
+      const overlay = document.createElement('div');
+      overlay.className = 'card-badges-overlay';
       const badge = document.createElement('span');
-      badge.className =
-        project.category === 'jogo'
-          ? 'badge badge-jogo'
-          : project.category === 'mod'
-            ? 'badge badge-mod'
-            : 'badge';
+      badge.className = getCategoryBadgeClass(project.category);
       badge.textContent = project.categoryLabel;
-
       const version = document.createElement('span');
-      version.className = 'version-tag';
-      version.textContent = `${project.version} • ${project.size}`;
-      topRow.append(badge, version);
+      version.className = 'version-pill';
+      version.textContent = project.version;
+      overlay.append(badge, version);
+      banner.append(img, overlay);
 
-      const h3 = document.createElement('h3');
-      h3.textContent = project.title;
+      const content = document.createElement('div');
+      content.className = 'card-content';
+
+      const title = document.createElement('h2');
+      title.className = 'card-title';
+      title.textContent = project.title;
 
       const summary = document.createElement('p');
       summary.className = 'card-summary';
       summary.textContent = project.summary;
 
-      const tagList = document.createElement('ul');
-      tagList.className = 'tag-list';
-      tagList.setAttribute('aria-label', 'Plataformas e tags');
-      for (const label of [...project.platforms, ...project.tags]) {
-        const li = document.createElement('li');
-        li.className = 'tag-chip';
-        li.textContent = label;
-        tagList.append(li);
-      }
+      const specs = document.createElement('div');
+      specs.className = 'card-specs';
+      const plat = document.createElement('span');
+      plat.textContent = project.platforms[0] || 'PC';
+      const size = document.createElement('span');
+      size.textContent = project.size;
+      const lic = document.createElement('span');
+      lic.textContent = 'Gratuito';
+      specs.append(plat, size, lic);
 
       const actions = document.createElement('div');
       actions.className = 'card-actions';
 
-      const detailsBtn = document.createElement('button');
-      detailsBtn.type = 'button';
-      detailsBtn.className = 'btn btn-primary';
-      detailsBtn.textContent = 'Tutorial & Baixar';
-      detailsBtn.setAttribute('aria-label', `Tutorial & Baixar — ${project.title}`);
-      detailsBtn.addEventListener('click', () => openProjectModal(project));
+      const downloadBtn = document.createElement('a');
+      downloadBtn.href = project.downloadUrl;
+      downloadBtn.target = '_blank';
+      downloadBtn.rel = 'noopener noreferrer';
+      downloadBtn.className = 'btn btn-primary';
+      downloadBtn.textContent = 'Baixar';
+      downloadBtn.setAttribute('aria-label', `Baixar — ${project.title}`);
 
-      const repoLink = document.createElement('a');
-      repoLink.href = project.repoUrl || data.studio.githubOrgUrl;
-      repoLink.target = '_blank';
-      repoLink.rel = 'noopener noreferrer';
-      repoLink.className = 'btn btn-secondary';
-      repoLink.textContent = 'GitHub';
-      repoLink.setAttribute('aria-label', `GitHub — ${project.title}`);
+      const infoBtn = document.createElement('button');
+      infoBtn.type = 'button';
+      infoBtn.className = 'btn btn-secondary';
+      infoBtn.textContent = 'Guia & Info';
+      infoBtn.setAttribute('aria-label', `Guia & Info — ${project.title}`);
+      infoBtn.addEventListener('click', () => openProjectModal(project));
 
-      actions.append(detailsBtn, repoLink);
-      body.append(topRow, h3, summary, tagList, actions);
-      article.append(coverWrap, body);
+      actions.append(downloadBtn, infoBtn);
+      content.append(title, summary, specs, actions);
+      article.append(banner, content);
       return article;
     });
 
     els.projectsGrid.replaceChildren(...cards);
   }
 
+  function resetAllFilters() {
+    state.category = 'all';
+    state.platform = 'all';
+    state.query = '';
+    if (els.searchInput) els.searchInput.value = '';
+    for (const btn of els.catButtons) {
+      btn.setAttribute('aria-pressed', String(btn.dataset.filter === 'all'));
+    }
+    for (const btn of els.platformButtons) {
+      btn.setAttribute('aria-pressed', String(btn.dataset.platform === 'all'));
+    }
+    syncUrlParams();
+    renderCatalog();
+  }
+
   function setupCatalogControls() {
     const params = new URLSearchParams(window.location.search);
+    const initialView = params.get('aba');
     const initialCat = params.get('cat');
+    const initialPlat = params.get('plat');
     const initialQuery = params.get('q');
     const initialProjectId = params.get('projeto');
 
+    if (initialView && els.views[initialView]) {
+      switchView(initialView, false);
+    }
     if (initialCat && ['all', 'app', 'jogo', 'mod'].includes(initialCat)) {
       state.category = initialCat;
+    }
+    if (initialPlat && ['all', 'windows', 'linux', 'android'].includes(initialPlat)) {
+      state.platform = initialPlat;
     }
     if (initialQuery) {
       state.query = initialQuery;
       if (els.searchInput) els.searchInput.value = initialQuery;
     }
 
-    for (const btn of els.filterButtons) {
-      const cat = btn.dataset.filter;
-      btn.setAttribute('aria-pressed', String(cat === state.category));
+    for (const btn of els.catButtons) {
+      btn.setAttribute('aria-pressed', String(btn.dataset.filter === state.category));
       btn.addEventListener('click', () => {
-        state.category = cat;
-        for (const other of els.filterButtons) {
+        state.category = btn.dataset.filter;
+        for (const other of els.catButtons) {
           other.setAttribute('aria-pressed', String(other === btn));
         }
         syncUrlParams();
@@ -618,8 +835,28 @@
       });
     }
 
+    for (const btn of els.platformButtons) {
+      btn.setAttribute('aria-pressed', String(btn.dataset.platform === state.platform));
+      btn.addEventListener('click', () => {
+        state.platform = btn.dataset.platform;
+        for (const other of els.platformButtons) {
+          other.setAttribute('aria-pressed', String(other === btn));
+        }
+        syncUrlParams();
+        renderCatalog();
+      });
+    }
+
+    els.sortSelect?.addEventListener('change', (event) => {
+      state.sort = event.target.value;
+      renderCatalog();
+    });
+
+    els.clearFiltersBtn?.addEventListener('click', resetAllFilters);
+
     els.searchInput?.addEventListener('input', (event) => {
       state.query = event.target.value;
+      if (state.view !== 'loja') switchView('loja');
       syncUrlParams();
       renderCatalog();
     });
@@ -636,6 +873,8 @@
   setupThemeToggle();
   setupDialogs();
   setupCopyButtons();
+  setupProductTabs();
+  setupNavigation();
   hydrateStudioInfo();
   setupCatalogControls();
 })();
