@@ -22,15 +22,15 @@ window.INSANIX_DATA = {
   },
 
   donations: {
-    // IMPORTANTE: Nunca coloque seu CPF como chave Pix pública!
-    // Crie uma Chave Aleatória no seu banco ou use LivePix/Apoia.se.
-    pixKey: "SUBSTITUA-PELA-SUA-CHAVE-PIX-ALEATORIA",
-    pixReceiverName: "Insanix Studio",
-    pixNote: "Use uma chave aleatória ou LivePix para manter seus dados pessoais privados.",
-    pixQrImage: "assets/img/pix-qr-placeholder.svg",
-    livePixUrl: "https://livepix.gg/",
-    kofiUrl: "https://ko-fi.com/",
-    githubSponsorsUrl: "https://github.com/sponsors",
+    // Canal oficial único via LivePix (aceita Pix, Cartão BR e Internacional sem expor dados pessoais/bancários)
+    pixKey: "https://livepix.gg/kulefi",
+    pixReceiverName: "INSANIX STUDIO (LivePix @kulefi)",
+    pixNote:
+      "Pagamento protegido pela LivePix via Pix, Cartão de Crédito ou envio internacional em uma conta única.",
+    pixQrImage: "assets/img/livepix-qr.svg",
+    livePixUrl: "https://livepix.gg/kulefi",
+    kofiUrl: "",
+    githubSponsorsUrl: "",
     supporters: [
       { name: "Espaço para o 1º apoiador!", badge: "Fundador" },
       { name: "Seu nome pode aparecer aqui", badge: "Apoiador" }

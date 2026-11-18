@@ -54,15 +54,11 @@
     pagePixKey: document.getElementById('page-pix-key'),
     pagePixNote: document.getElementById('page-pix-note'),
     pageLivePixLink: document.getElementById('page-livepix-link'),
-    pageKofiLink: document.getElementById('page-kofi-link'),
-    pageSponsorsLink: document.getElementById('page-sponsors-link'),
     donatePixQr: document.getElementById('donate-pix-qr'),
     donatePixReceiver: document.getElementById('donate-pix-receiver'),
     pixKeyValue: document.getElementById('pix-key-value'),
     donatePixNote: document.getElementById('donate-pix-note'),
     donateLivePixLink: document.getElementById('donate-livepix-link'),
-    donateKofiLink: document.getElementById('donate-kofi-link'),
-    donateSponsorsLink: document.getElementById('donate-sponsors-link'),
     footerGithubLink: document.getElementById('footer-github-link'),
     footerDiscordLink: document.getElementById('footer-discord-link'),
     footerYoutubeLink: document.getElementById('footer-youtube-link'),
@@ -455,8 +451,8 @@
       );
     }
 
-    // Populate both Pix modal and Apoiar page
-    const pixReceiverText = `Beneficiário: ${donations.pixReceiverName}`;
+    // Populate both Quick Donate modal and Apoiar page
+    const pixReceiverText = `Recebedor: ${donations.pixReceiverName}`;
     for (const img of [els.donatePixQr, els.pagePixQr]) {
       if (img) img.src = donations.pixQrImage;
     }
@@ -464,19 +460,13 @@
       if (el) el.textContent = pixReceiverText;
     }
     for (const el of [els.pixKeyValue, els.pagePixKey]) {
-      if (el) el.textContent = donations.pixKey;
+      if (el) el.textContent = donations.pixKey || donations.livePixUrl;
     }
     for (const el of [els.donatePixNote, els.pagePixNote]) {
       if (el) el.textContent = donations.pixNote;
     }
     for (const a of [els.donateLivePixLink, els.pageLivePixLink]) {
-      if (a) a.href = donations.livePixUrl;
-    }
-    for (const a of [els.donateKofiLink, els.pageKofiLink]) {
-      if (a) a.href = donations.kofiUrl;
-    }
-    for (const a of [els.donateSponsorsLink, els.pageSponsorsLink]) {
-      if (a) a.href = donations.githubSponsorsUrl;
+      if (a && donations.livePixUrl) a.href = donations.livePixUrl;
     }
 
     // Category counts
