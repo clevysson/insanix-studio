@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" fill="none">
+  <defs>
+    <linearGradient id="bg-app" x1="0" y1="0" x2="800" y2="450" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#082f49"/>
+    </linearGradient>
+    <linearGradient id="accent-app" x1="120" y1="80" x2="680" y2="370" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#00e5ff"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#bg-app)"/>
+  <g opacity="0.16" stroke="#38bdf8" stroke-width="1">
+    <path d="M0 90h800M0 180h800M0 270h800M0 360h800M160 0v450M320 0v450M480 0v450M640 0v450"/>
+  </g>
+  <rect x="140" y="72" width="520" height="306" rx="20" fill="#0b1222" stroke="url(#accent-app)" stroke-width="3"/>
+  <rect x="140" y="72" width="520" height="44" rx="20" fill="#131f38"/>
+  <circle cx="172" cy="94" r="7" fill="#f43f5e"/>
+  <circle cx="196" cy="94" r="7" fill="#f59e0b"/>
+  <circle cx="220" cy="94" r="7" fill="#10b981"/>
+  <rect x="176" y="144" width="210" height="24" rx="6" fill="url(#accent-app)"/>
+  <rect x="176" y="184" width="320" height="14" rx="5" fill="#334155"/>
+  <rect x="176" y="210" width="270" height="14" rx="5" fill="#1e293b"/>
+  <rect x="176" y="256" width="144" height="44" rx="10" fill="#00e5ff" fill-opacity="0.18" stroke="#00e5ff" stroke-width="2"/>
+  <rect x="336" y="256" width="144" height="44" rx="10" fill="#3b82f6" fill-opacity="0.18" stroke="#3b82f6" stroke-width="2"/>
+  <circle cx="566" cy="240" r="56" fill="#00e5ff" fill-opacity="0.12" stroke="url(#accent-app)" stroke-width="3"/>
+  <path d="M548 240l14 14 26-30" stroke="#00e5ff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

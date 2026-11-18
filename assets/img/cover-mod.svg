@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" fill="none">
+  <defs>
+    <linearGradient id="bg-mod" x1="0" y1="0" x2="800" y2="450" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#071f1e"/>
+      <stop offset="100%" stop-color="#172554"/>
+    </linearGradient>
+    <linearGradient id="accent-mod" x1="180" y1="90" x2="620" y2="360" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#bg-mod)"/>
+  <g stroke="#10b981" stroke-opacity="0.2" stroke-width="2">
+    <polygon points="400,60 540,140 540,300 400,380 260,300 260,140"/>
+    <polygon points="400,98 506,159 506,281 400,342 294,281 294,159"/>
+  </g>
+  <path d="M400 116l92 53v106l-92 53-92-53V169l92-53z" fill="#071b24" stroke="url(#accent-mod)" stroke-width="4"/>
+  <path d="M308 169l92 53 92-53M400 222v106" stroke="url(#accent-mod)" stroke-width="4" stroke-linejoin="round"/>
+  <circle cx="400" cy="222" r="18" fill="#10b981"/>
+</svg>

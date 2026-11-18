@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" fill="none">
+  <defs>
+    <linearGradient id="bg-game" x1="0" y1="0" x2="800" y2="450" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#170b2b"/>
+      <stop offset="100%" stop-color="#311042"/>
+    </linearGradient>
+    <linearGradient id="accent-game" x1="200" y1="120" x2="600" y2="330" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#f472b6"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#bg-game)"/>
+  <circle cx="400" cy="225" r="170" fill="url(#accent-game)" fill-opacity="0.15"/>
+  <path d="M220 270c-22 0-40-18-40-40l14-64c6-26 29-46 56-46h300c27 0 50 20 56 46l14 64c0 22-18 40-40 40-18 0-33-11-40-26l-18-32H278l-18 32c-7 15-22 26-40 26z" fill="#130a24" stroke="url(#accent-game)" stroke-width="4"/>
+  <path d="M262 175v50M237 200h50" stroke="#e2e8f0" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="520" cy="182" r="11" fill="#00e5ff"/>
+  <circle cx="552" cy="202" r="11" fill="#ec4899"/>
+  <circle cx="488" cy="202" r="11" fill="#a78bfa"/>
+  <circle cx="520" cy="222" r="11" fill="#fbbf24"/>
+</svg>
