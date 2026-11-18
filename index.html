@@ -388,6 +388,7 @@
   <dialog id="project-dialog" class="modal" closedby="any" aria-labelledby="project-dialog-title">
     <div class="modal-header">
       <div class="modal-title-group">
+        <img id="project-dialog-logo" src="assets/img/favicon.svg" alt="" width="36" height="36" class="modal-app-logo" hidden>
         <span id="project-dialog-badge" class="badge">App</span>
         <h2 id="project-dialog-title">Nome do Projeto</h2>
       </div>
@@ -406,14 +407,17 @@
 
     <div class="modal-body">
       <div class="modal-hero-strip">
-        <img
-          id="project-dialog-cover"
-          src="assets/img/cover-app.svg"
-          alt=""
-          width="400"
-          height="225"
-          class="modal-cover"
-        >
+        <div class="modal-media-col">
+          <img
+            id="project-dialog-cover"
+            src="assets/img/cover-app.svg"
+            alt=""
+            width="400"
+            height="225"
+            class="modal-cover"
+          >
+          <div id="project-dialog-gallery" class="modal-gallery" hidden></div>
+        </div>
         <div class="modal-hero-info">
           <p id="project-dialog-description" class="modal-description"></p>
           <dl id="project-dialog-meta" class="meta-grid"></dl>

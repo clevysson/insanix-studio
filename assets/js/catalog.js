@@ -53,8 +53,10 @@ window.INSANIX_DATA = {
       license: "Gratuito (Freeware)",
       platforms: ["Windows 10/11"],
       tags: ["Desktop", "Produtividade", "Utilitário", "Windows"],
+      logo: "assets/img/logo-desktop-organizer.svg",
       cover: "assets/img/cover-desktop-organizer.svg",
       coverAlt: "Interface estilizada com painéis translúcidos do DesktopOrganizerPro",
+      screenshots: [],
       featured: true,
       githubRepo: "clevysson/desktop-organizer-pro",
       downloadUrl:
@@ -109,8 +111,10 @@ window.INSANIX_DATA = {
       license: "Gratuito (Freeware)",
       platforms: ["Windows 10 (64-bit)", "Windows 11 (64-bit)"],
       tags: ["Armazenamento", "Limpeza", "Utilitário", "Extensões", "Duplicados", "Windows"],
+      logo: "assets/img/logo-disklens.svg",
       cover: "assets/img/cover-disklens.svg",
       coverAlt: "Gráfico circular e barras de armazenamento por extensão do DiskLens Pro",
+      screenshots: [],
       featured: false,
       githubRepo: "clevysson/disklens-pro",
       downloadUrl:
@@ -154,6 +158,67 @@ window.INSANIX_DATA = {
       changelog: [
         "v2.0.0 — Adicionado modo Galeria Visual de miniaturas paginada, Lightbox ampliado com navegação por setas, ordenação global, inspeção de arquivos TAR/TAR.GZ, detecção expandida de caches (AMD, Photoshop IA, CrashDumps, pip, Roblox), preservação opcional de subpastas ao mover arquivos e dashboard inicial de discos.",
         "v1.0.0 — Versão inicial com varredura paralela Win32/NTFS, agrupamento por extensões e categorias, Treemap interativo, detector de duplicados SHA-256, prévia visual com player de vídeo/áudio e limpeza segura para a Lixeira."
+      ]
+    },
+    {
+      id: "kxp-emulator",
+      category: "app",
+      categoryLabel: "App",
+      title: "KXP Emulador",
+      summary:
+        "Emulador Android gamer para PC com foco em Free Fire, entrada Raw Input de baixa latência, canal duplo anti-bug de analógico e Mapeador Pro.",
+      description:
+        "O KXP Emulador foi desenvolvido para oferecer desempenho gamer no Windows sem bloatware ou anúncios invasivos. Combina ambiente Android desktop em modo PC, captura de mouse Raw Input, isolamento de canais virtuais entre analógico e câmera/tiro para eliminar o bug de analógico, Mapeador Pro com 11 tipos de controle (Analógico 360°, Deslizar A→B, Turbo, Zoom 2 Dedos, Olhar Livre, Skill Direcional, Macro Duplo, Mira FPS, Atirar, Mirar/ADS e Toque Simples), tela cheia real (F11) e integração com o app Kulefi Ofertas.",
+      version: "v1.0.0",
+      releaseDate: "2026-11-18",
+      size: "1.58 GB",
+      license: "Gratuito (Freeware)",
+      platforms: ["Windows 10/11 (64-bit)"],
+      tags: ["Emulador", "Android", "Free Fire", "Gaming", "Keymapper"],
+      logo: "assets/img/logo-kxp.svg",
+      cover: "assets/img/cover-kxp.svg",
+      coverAlt: "Ilustração gamer do KXP Emulador com mira FPS e controles mapeados",
+      screenshots: [],
+      featured: true,
+      githubRepo: "clevysson/kxp-emulator",
+      downloadUrl:
+        "https://github.com/clevysson/kxp-emulator/releases/download/v1.0.0/KXP-Emulador-v1.0.0.zip",
+      repoUrl: "https://github.com/clevysson/kxp-emulator",
+      virustotalUrl: "",
+      sha256: "D1378D6CCD9C32725B3B10765F40208C22F15DFC8296EA4F48B5E34D2A143F33",
+      requirements: [
+        "Windows 10 ou Windows 11 (64-bit)",
+        "Processador x64 com virtualização (Intel VT-x / AMD-V) ativada na BIOS",
+        "Mínimo 4 GB de RAM livres (recomendado 8 GB ou mais no sistema)",
+        "3,5 GB de espaço livre em disco após extração",
+        "Placa de vídeo compatível com OpenGL/ANGLE (recomendado ativar Aceleração HD 3D no launcher)",
+        "Opcional recomendado: Plataforma de Hipervisor do Windows (WHPX) ativada para modo TURBO"
+      ],
+      tutorialSteps: [
+        {
+          title: "1. Baixar e conferir o pacote",
+          detail:
+            "Faça o download do arquivo KXP-Emulador-v1.0.0.zip e, se desejar, confirme o hash SHA-256 para validar a integridade do pacote portátil."
+        },
+        {
+          title: "2. Extrair em uma pasta própria",
+          detail:
+            "Clique com o botão direito no .zip e selecione 'Extrair Tudo' para um diretório fora de Arquivos de Programas (ex.: C:\\Jogos\\KXP-Emulador). Não execute de dentro do arquivo compactado."
+        },
+        {
+          title: "3. Iniciar o emulador",
+          detail:
+            "Abra o executável KxpLauncher.exe. Pacote 100% portátil: não requer instalação prévia de .NET, motor gráfico ou ferramentas externas. Clique em 'INICIAR ANDROID 17'."
+        },
+        {
+          title: "4. Configurar Mapeador Pro e controles",
+          detail:
+            "Use o botão 'Mapeador' para abrir a paleta com 11 tipos de controle, ajustar raios, setas de deslize e escolher perfis prontos (Free Fire FPS, MOBA / Arena, Arcade / Deslizar). Durante o jogo, pressione F1 para travar/destravar a mira 360° e F11 para alternar Tela Cheia 100%."
+        }
+      ],
+      tutorialCommand: "certutil -hashfile KXP-Emulador-v1.0.0.zip SHA256",
+      changelog: [
+        "v1.0.0 — Lançamento oficial portátil: KXP Desktop Gaming em tela cheia real (F11) e janela sem bordas, tela de carregamento dedicada com shader warm-up, Mapeador Pro completo com 11 tipos de controle e física multitouch dual-channel, presets prontos (Free Fire, MOBA, Arcade), HUD oculto por padrão até ser ativado pelo usuário, instalador rápido de APK e app Kulefi Ofertas integrado."
       ]
     }
   ]

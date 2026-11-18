@@ -829,6 +829,22 @@
     padding: 0.95rem 1rem;
   }
 
+  .card-title-row {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .card-app-logo {
+    inline-size: 36px;
+    block-size: 36px;
+    border-radius: var(--radius-sm);
+    object-fit: cover;
+    border: 1px solid var(--border-subtle);
+    background-color: var(--bg-surface-2);
+    flex: none;
+  }
+
   .card-title {
     font-size: 1.05rem;
   }
@@ -1169,6 +1185,16 @@
     gap: 1.15rem;
   }
 
+  .modal-app-logo {
+    inline-size: 36px;
+    block-size: 36px;
+    border-radius: var(--radius-sm);
+    object-fit: cover;
+    border: 1px solid var(--border-subtle);
+    background-color: var(--bg-surface-2);
+    flex: none;
+  }
+
   .modal-hero-strip {
     display: grid;
     gap: 1rem;
@@ -1177,8 +1203,13 @@
 
   @media (min-width: 640px) {
     .modal-hero-strip {
-      grid-template-columns: 240px 1fr;
+      grid-template-columns: 260px 1fr;
     }
+  }
+
+  .modal-media-col {
+    display: grid;
+    gap: 0.5rem;
   }
 
   .modal-cover {
@@ -1188,6 +1219,32 @@
     object-fit: cover;
     border-radius: var(--radius-md);
     border: 1px solid var(--border-subtle);
+  }
+
+  .modal-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.4rem;
+  }
+
+  .gallery-thumb {
+    padding: 0;
+    border: 2px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    background: var(--bg-surface-2);
+    overflow: hidden;
+    cursor: pointer;
+    aspect-ratio: 16 / 9;
+  }
+
+  .gallery-thumb[aria-pressed="true"] {
+    border-color: var(--accent-primary);
+  }
+
+  .gallery-thumb img {
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
   }
 
   .modal-hero-info {

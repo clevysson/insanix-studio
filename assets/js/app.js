@@ -60,9 +60,11 @@
     footerEmailLink: document.getElementById('footer-email-link'),
     projectDialog: document.getElementById('project-dialog'),
     donateDialog: document.getElementById('donate-dialog'),
+    projectDialogLogo: document.getElementById('project-dialog-logo'),
     projectDialogBadge: document.getElementById('project-dialog-badge'),
     projectDialogTitle: document.getElementById('project-dialog-title'),
     projectDialogCover: document.getElementById('project-dialog-cover'),
+    projectDialogGallery: document.getElementById('project-dialog-gallery'),
     projectDialogDescription: document.getElementById('project-dialog-description'),
     projectDialogMeta: document.getElementById('project-dialog-meta'),
     projectDialogDownload: document.getElementById('project-dialog-download'),
@@ -540,11 +542,57 @@
 
   // --- Product Modal ---
   async function openProjectModal(project) {
+    if (els.projectDialogLogo) {
+      if (project.logo) {
+        els.projectDialogLogo.src = project.logo;
+        els.projectDialogLogo.alt = `Logo de ${project.title}`;
+        els.projectDialogLogo.hidden = false;
+      } else {
+        els.projectDialogLogo.hidden = true;
+      }
+    }
+
     els.projectDialogBadge.className = getCategoryBadgeClass(project.category);
     els.projectDialogBadge.textContent = project.categoryLabel;
     els.projectDialogTitle.textContent = project.title;
     els.projectDialogCover.src = project.cover;
     els.projectDialogCover.alt = project.coverAlt || project.title;
+
+    if (els.projectDialogGallery) {
+      const mediaItems = Array.isArray(project.screenshots) && project.screenshots.length > 0
+        ? project.screenshots.slice(0, 3)
+        : [];
+      if (mediaItems.length > 0) {
+        els.projectDialogCover.src = mediaItems[0];
+        const thumbs = mediaItems.map((src, index) => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'gallery-thumb';
+          btn.setAttribute('aria-label', `Ver print ${index + 1} de ${project.title}`);
+          btn.setAttribute('aria-pressed', String(index === 0));
+          const img = document.createElement('img');
+          img.src = src;
+          img.alt = '';
+          img.width = 160;
+          img.height = 90;
+          btn.append(img);
+          btn.addEventListener('click', () => {
+            els.projectDialogCover.src = src;
+            els.projectDialogCover.alt = `${project.title} — Print ${index + 1}`;
+            for (const other of els.projectDialogGallery.querySelectorAll('.gallery-thumb')) {
+              other.setAttribute('aria-pressed', String(other === btn));
+            }
+          });
+          return btn;
+        });
+        els.projectDialogGallery.replaceChildren(...thumbs);
+        els.projectDialogGallery.hidden = false;
+      } else {
+        els.projectDialogGallery.replaceChildren();
+        els.projectDialogGallery.hidden = true;
+      }
+    }
+
     els.projectDialogDescription.textContent = project.description;
 
     const renderMeta = (version, size) => {
@@ -741,9 +789,23 @@
       const content = document.createElement('div');
       content.className = 'card-content';
 
+      const titleRow = document.createElement('div');
+      titleRow.className = 'card-title-row';
+      if (project.logo) {
+        const logoImg = document.createElement('img');
+        logoImg.className = 'card-app-logo';
+        logoImg.src = project.logo;
+        logoImg.alt = '';
+        logoImg.width = 36;
+        logoImg.height = 36;
+        logoImg.loading = 'lazy';
+        titleRow.append(logoImg);
+      }
+
       const title = document.createElement('h2');
       title.className = 'card-title';
       title.textContent = project.title;
+      titleRow.append(title);
 
       const summary = document.createElement('p');
       summary.className = 'card-summary';
@@ -778,7 +840,7 @@
       infoBtn.addEventListener('click', () => openProjectModal(project));
 
       actions.append(downloadBtn, infoBtn);
-      content.append(title, summary, specs, actions);
+      content.append(titleRow, summary, specs, actions);
       article.append(banner, content);
       return article;
     });
