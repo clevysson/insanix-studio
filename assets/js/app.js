@@ -560,7 +560,7 @@
 
     if (els.projectDialogGallery) {
       const mediaItems = Array.isArray(project.screenshots) && project.screenshots.length > 0
-        ? project.screenshots.slice(0, 3)
+        ? project.screenshots.slice(0, 4)
         : [];
       if (mediaItems.length > 0) {
         els.projectDialogCover.src = mediaItems[0];
