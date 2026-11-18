@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" fill="none">
+  <defs>
+    <linearGradient id="bg-dl" x1="0" y1="0" x2="800" y2="450" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#090f1d"/>
+      <stop offset="100%" stop-color="#17203a"/>
+    </linearGradient>
+    <linearGradient id="ring-dl" x1="160" y1="80" x2="400" y2="370" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#22d3ee"/>
+      <stop offset="50%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#f43f5e"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#bg-dl)"/>
+  <!-- Storage Ring -->
+  <circle cx="260" cy="225" r="122" stroke="#1e293b" stroke-width="28"/>
+  <circle cx="260" cy="225" r="122" stroke="url(#ring-dl)" stroke-width="28" stroke-dasharray="560 770" stroke-linecap="round" transform="rotate(-90 260 225)"/>
+  <circle cx="260" cy="225" r="76" fill="#0b1324" stroke="#38bdf8" stroke-opacity="0.35" stroke-width="2"/>
+  <path d="M235 225h50M260 200v50" stroke="#22d3ee" stroke-width="6" stroke-linecap="round"/>
+  <!-- Extension Bars -->
+  <rect x="440" y="96" width="286" height="48" rx="12" fill="#111a2e" stroke="#334155" stroke-width="1.5"/>
+  <rect x="458" y="114" width="160" height="12" rx="6" fill="#22d3ee"/>
+  <rect x="646" y="114" width="58" height="12" rx="6" fill="#475569"/>
+  <rect x="440" y="164" width="286" height="48" rx="12" fill="#111a2e" stroke="#334155" stroke-width="1.5"/>
+  <rect x="458" y="182" width="122" height="12" rx="6" fill="#a78bfa"/>
+  <rect x="646" y="182" width="58" height="12" rx="6" fill="#475569"/>
+  <rect x="440" y="232" width="286" height="48" rx="12" fill="#111a2e" stroke="#334155" stroke-width="1.5"/>
+  <rect x="458" y="250" width="92" height="12" rx="6" fill="#f472b6"/>
+  <rect x="646" y="250" width="58" height="12" rx="6" fill="#475569"/>
+  <rect x="440" y="300" width="286" height="48" rx="12" fill="#111a2e" stroke="#334155" stroke-width="1.5"/>
+  <rect x="458" y="318" width="64" height="12" rx="6" fill="#10b981"/>
+  <rect x="646" y="318" width="58" height="12" rx="6" fill="#475569"/>
+</svg>

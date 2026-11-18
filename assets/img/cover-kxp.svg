@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" fill="none">
+  <defs>
+    <linearGradient id="bg-kxp" x1="0" y1="0" x2="800" y2="450" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0b0818"/>
+      <stop offset="100%" stop-color="#22103b"/>
+    </linearGradient>
+    <linearGradient id="ac-kxp" x1="120" y1="80" x2="680" y2="370" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#f43f5e"/>
+      <stop offset="50%" stop-color="#a855f7"/>
+      <stop offset="100%" stop-color="#22d3ee"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#bg-kxp)"/>
+  <circle cx="400" cy="225" r="190" fill="#a855f7" fill-opacity="0.12"/>
+  <rect x="125" y="64" width="550" height="322" rx="22" fill="#0d0a1c" stroke="url(#ac-kxp)" stroke-width="3.5"/>
+  <rect x="148" y="88" width="504" height="274" rx="14" fill="#120f28"/>
+  <!-- Crosshair + Analog + Gaming HUD -->
+  <circle cx="250" cy="245" r="54" fill="#1c163c" stroke="#22d3ee" stroke-width="3"/>
+  <circle cx="250" cy="245" r="22" fill="#22d3ee" fill-opacity="0.25" stroke="#22d3ee" stroke-width="2"/>
+  <circle cx="430" cy="205" r="46" stroke="#f43f5e" stroke-width="3"/>
+  <path d="M430 144v26M430 240v26M369 205h26M465 205h26" stroke="#f43f5e" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="430" cy="205" r="6" fill="#22d3ee"/>
+  <!-- Keymap Badges -->
+  <rect x="526" y="134" width="84" height="34" rx="8" fill="#1e1b4b" stroke="#a855f7" stroke-width="2"/>
+  <rect x="546" y="146" width="44" height="10" rx="5" fill="#e2e8f0"/>
+  <rect x="526" y="186" width="84" height="34" rx="8" fill="#1e1b4b" stroke="#22d3ee" stroke-width="2"/>
+  <rect x="546" y="198" width="44" height="10" rx="5" fill="#22d3ee"/>
+  <rect x="526" y="238" width="84" height="34" rx="8" fill="#1e1b4b" stroke="#f43f5e" stroke-width="2"/>
+  <rect x="546" y="250" width="44" height="10" rx="5" fill="#f43f5e"/>
+</svg>
