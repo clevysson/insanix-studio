@@ -280,6 +280,7 @@
   .store-view {
     padding-block: 1.25rem 2.75rem;
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: 1.25rem;
   }
 
@@ -304,12 +305,17 @@
 
   /* Store Top Bar */
   .store-header {
-    position: sticky;
-    inset-block-start: 0;
     z-index: 25;
     background-color: color-mix(in oklab, var(--bg-surface) 92%, transparent);
     backdrop-filter: blur(12px);
     border-block-end: 1px solid var(--border-subtle);
+  }
+
+  @media (min-width: 720px) {
+    .store-header {
+      position: sticky;
+      inset-block-start: 0;
+    }
   }
 
   .header-bar {
@@ -317,45 +323,57 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    gap: 0.75rem 1.25rem;
-    min-block-size: 66px;
+    gap: 0.55rem 1rem;
+    min-block-size: 64px;
     padding-block: 0.5rem;
   }
 
   .header-left {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 1rem;
+    gap: 0.45rem 1rem;
+    flex: 1 1 auto;
+    min-inline-size: 0;
   }
 
   .brand-link {
     display: inline-flex;
     align-items: center;
-    min-block-size: 44px;
+    flex: none;
+    min-block-size: 42px;
     border-radius: var(--radius-sm);
   }
 
   .brand-logo {
-    block-size: 38px;
+    block-size: 36px;
     inline-size: auto;
+    max-inline-size: none;
+    flex: none;
+  }
+
+  .store-nav {
+    max-inline-size: 100%;
+    overflow-x: auto;
   }
 
   .nav-list {
     list-style: none;
     display: flex;
     align-items: center;
-    gap: 0.25rem;
+    gap: 0.2rem;
   }
 
   .nav-tab {
     position: relative;
-    min-block-size: 42px;
-    padding-inline: 0.85rem;
+    min-block-size: 40px;
+    padding-inline: 0.72rem;
     border: 0;
     border-radius: var(--radius-sm);
     background: transparent;
     color: var(--text-muted);
     font-weight: 700;
+    font-size: 0.9rem;
     cursor: pointer;
     white-space: nowrap;
     transition: color 0.16s ease, background-color 0.16s ease;
@@ -511,6 +529,7 @@
   /* Compact Spotlight Strip */
   .spotlight-card {
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: 1rem;
     align-items: center;
     padding: 0.9rem 1.15rem;
@@ -532,11 +551,18 @@
   }
 
   .spotlight-media {
+    display: none;
     aspect-ratio: 16 / 9;
     border-radius: var(--radius-md);
     overflow: hidden;
     border: 1px solid var(--border-subtle);
     background-color: var(--bg-surface-2);
+  }
+
+  @media (min-width: 600px) {
+    .spotlight-media {
+      display: block;
+    }
   }
 
   .spotlight-media img {
@@ -584,27 +610,28 @@
 
   .store-sidebar {
     display: grid;
-    gap: 0.9rem;
+    gap: 0.75rem;
   }
 
   @media (min-width: 880px) {
     .store-sidebar {
       position: sticky;
       inset-block-start: 82px;
+      gap: 0.9rem;
     }
   }
 
   .sidebar-panel {
-    padding: 1rem;
+    padding: 0.85rem;
     border-radius: var(--radius-md);
     background-color: var(--bg-surface);
     border: 1px solid var(--border-subtle);
     display: grid;
-    gap: 0.7rem;
+    gap: 0.6rem;
   }
 
   .sidebar-title {
-    font-size: 0.82rem;
+    font-size: 0.8rem;
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.06em;
@@ -613,7 +640,14 @@
 
   .category-list {
     display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.35rem;
+  }
+
+  @media (min-width: 880px) {
+    .category-list {
+      grid-template-columns: 1fr;
+    }
   }
 
   .cat-btn {
@@ -684,11 +718,18 @@
   }
 
   .sidebar-donate {
+    display: none;
     background: linear-gradient(
       145deg var(--in-oklab),
       color-mix(in oklab, var(--accent-secondary) 12%, var(--bg-surface)),
       var(--bg-surface)
     );
+  }
+
+  @media (min-width: 880px) {
+    .sidebar-donate {
+      display: grid;
+    }
   }
 
   .sidebar-note {
@@ -916,23 +957,26 @@
 
   .support-grid {
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: 1.25rem;
   }
 
   @media (min-width: 860px) {
     .support-grid {
-      grid-template-columns: 1.2fr 0.9fr;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.9fr);
       align-items: start;
     }
   }
 
   .support-card {
-    padding: 1.35rem;
+    padding: 1.15rem;
     border-radius: var(--radius-lg);
     background-color: var(--bg-surface);
     border: 1px solid var(--border-subtle);
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: 0.9rem;
+    min-inline-size: 0;
   }
 
   .support-sub {
@@ -1087,9 +1131,11 @@
   /* Native Top-Layer Modal <dialog> */
   .modal {
     margin: auto;
-    inline-size: min(94vw, 820px);
+    inline-size: min(94dvw, 820px);
+    max-inline-size: calc(100dvw - 1.25rem);
     max-block-size: min(90dvh, 860px);
     padding: 0;
+    overflow: hidden;
     border: 1px solid var(--border-strong);
     border-radius: var(--radius-lg);
     background-color: var(--bg-elevated);
@@ -1180,8 +1226,10 @@
 
   .modal-body {
     overflow-y: auto;
-    padding: 1.25rem;
+    overflow-x: hidden;
+    padding: 1rem 1.15rem;
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: 1.15rem;
   }
 
@@ -1197,19 +1245,27 @@
 
   .modal-hero-strip {
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: 1rem;
     align-items: start;
+    min-inline-size: 0;
   }
 
   @media (min-width: 640px) {
     .modal-hero-strip {
-      grid-template-columns: 260px 1fr;
+      grid-template-columns: 260px minmax(0, 1fr);
+    }
+
+    .modal-body {
+      padding: 1.25rem;
     }
   }
 
   .modal-media-col {
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: 0.5rem;
+    min-inline-size: 0;
   }
 
   .modal-cover {
@@ -1225,6 +1281,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(54px, 1fr));
     gap: 0.4rem;
+    min-inline-size: 0;
   }
 
   .gallery-thumb {
@@ -1249,7 +1306,9 @@
 
   .modal-hero-info {
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: 0.8rem;
+    min-inline-size: 0;
   }
 
   .modal-description {
@@ -1285,7 +1344,9 @@
   /* Product Tabs inside Modal */
   .product-tabs {
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: 0;
+    min-inline-size: 0;
   }
 
   .tablist {
@@ -1324,7 +1385,9 @@
   .tab-panel-inner {
     padding-block-start: 1rem;
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: 0.85rem;
+    min-inline-size: 0;
   }
 
   .clean-list {
@@ -1339,7 +1402,9 @@
     list-style: none;
     counter-reset: tutorial-step;
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: 0.65rem;
+    min-inline-size: 0;
   }
 
   .tutorial-steps li {
@@ -1379,13 +1444,17 @@
 
   .hash-wrap {
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: 0.5rem;
+    min-inline-size: 0;
   }
 
   /* Copy Button */
   .command-block {
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: 0.45rem;
+    min-inline-size: 0;
   }
 
   .command-label {
@@ -1398,6 +1467,8 @@
     display: flex;
     align-items: flex-start;
     gap: 0.5rem;
+    min-inline-size: 0;
+    max-inline-size: 100%;
   }
 
   .copyable pre {
@@ -1508,17 +1579,19 @@
 
   .pix-box {
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: 1rem;
     padding: 1rem;
     border-radius: var(--radius-md);
     background-color: var(--bg-page);
     border: 1px solid var(--border-subtle);
     align-items: center;
+    min-inline-size: 0;
   }
 
   @media (min-width: 540px) {
     .pix-box {
-      grid-template-columns: 164px 1fr;
+      grid-template-columns: 164px minmax(0, 1fr);
     }
   }
 
@@ -1531,7 +1604,9 @@
 
   .pix-details {
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: 0.55rem;
+    min-inline-size: 0;
   }
 
   .pix-receiver {
