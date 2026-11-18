@@ -70,38 +70,88 @@
     --font-mono: "JetBrains Mono", "Cascadia Code", ui-monospace, SFMono-Regular, Consolas, monospace;
 
     --in-oklab: ;
-    --bg-page-light: #f1f5f9;
+    /* Light Theme (itch.io storefront contrast) */
+    --bg-page-light: #eaedf2;
+    --bg-header-light: #ffffff;
+    --bg-rail-light: #f6f8fb;
     --bg-surface-light: #ffffff;
-    --bg-surface-2-light: #e2e8f0;
+    --bg-surface-2-light: #edf1f7;
+    --bg-showcase-panel-light: #ffffff;
     --bg-elevated-light: #ffffff;
+    --bg-media-light: #0f141d;
     --text-main-light: #0f172a;
     --text-muted-light: #475569;
-    --border-subtle-light: rgb(15 23 42 / 0.11);
-    --border-strong-light: rgb(15 23 42 / 0.22);
-    --accent-primary-light: #0284c7;
-    --accent-primary-hover-light: #0369a1;
+    --border-subtle-light: rgb(15 23 42 / 0.14);
+    --border-strong-light: rgb(3 105 161 / 0.42);
+    --accent-primary-light: #0369a1;
+    --accent-primary-hover-light: #075985;
     --accent-on-primary-light: #ffffff;
+    --accent-download-light: #15803d;
+    --accent-download-hover-light: #166534;
+    --accent-on-download-light: #ffffff;
+    --accent-indie-light: #d91b42;
+    --accent-indie-hover-light: #be123c;
+    --accent-on-indie-light: #ffffff;
     --accent-secondary-light: #6d28d9;
-    --shadow-card-light: 0 6px 20px rgb(15 23 42 / 0.07);
+    --free-bg-light: #dcfce7;
+    --free-text-light: #166534;
+    --badge-app-bg-light: #e0f2fe;
+    --badge-app-fg-light: #075985;
+    --badge-jogo-bg-light: #ffe4e6;
+    --badge-jogo-fg-light: #9f1239;
+    --badge-mod-bg-light: #d1fae5;
+    --badge-mod-fg-light: #065f46;
+    --cat-app-light: #0284c7;
+    --cat-jogo-light: #d91b42;
+    --cat-mod-light: #059669;
+    --shadow-card-light: 0 8px 22px rgb(15 23 42 / 0.08);
+    --shadow-showcase-light: 0 16px 38px rgb(15 23 42 / 0.11);
 
-    --bg-page-dark: #090d16;
-    --bg-surface-dark: #111827;
-    --bg-surface-2-dark: #1a2438;
-    --bg-elevated-dark: #151e30;
-    --text-main-dark: #f8fafc;
-    --text-muted-dark: #94a3b8;
-    --border-subtle-dark: rgb(148 163 184 / 0.16);
-    --border-strong-dark: rgb(56 189 248 / 0.42);
-    --accent-primary-dark: #22d3ee;
-    --accent-primary-hover-dark: #67e8f9;
-    --accent-on-primary-dark: #03151e;
+    /* Dark Theme (Steam store contrast + itch.io indie accents) */
+    --bg-page-dark: #0d1117;
+    --bg-header-dark: #090c11;
+    --bg-rail-dark: #131821;
+    --bg-surface-dark: #1b222e;
+    --bg-surface-2-dark: #242d3d;
+    --bg-showcase-panel-dark: #161c27;
+    --bg-elevated-dark: #1a212e;
+    --bg-media-dark: #070a0f;
+    --text-main-dark: #f0f6fc;
+    --text-muted-dark: #9fb1c8;
+    --border-subtle-dark: rgb(148 163 184 / 0.22);
+    --border-strong-dark: rgb(102 192 244 / 0.46);
+    --accent-primary-dark: #66c0f4;
+    --accent-primary-hover-dark: #8fd3fa;
+    --accent-on-primary-dark: #061826;
+    --accent-download-dark: #22c55e;
+    --accent-download-hover-dark: #4ade80;
+    --accent-on-download-dark: #042411;
+    --accent-indie-dark: #ff5a6e;
+    --accent-indie-hover-dark: #ff7a8a;
+    --accent-on-indie-dark: #1a0409;
     --accent-secondary-dark: #a78bfa;
-    --shadow-card-dark: 0 10px 28px rgb(0 0 0 / 0.42);
+    --free-bg-dark: #163a24;
+    --free-text-dark: #86efac;
+    --badge-app-bg-dark: #172f4a;
+    --badge-app-fg-dark: #93c5fd;
+    --badge-jogo-bg-dark: #4a1525;
+    --badge-jogo-fg-dark: #fda4af;
+    --badge-mod-bg-dark: #123b2c;
+    --badge-mod-fg-dark: #6ee7b7;
+    --cat-app-dark: #38bdf8;
+    --cat-jogo-dark: #ff5a6e;
+    --cat-mod-dark: #34d399;
+    --shadow-card-dark: 0 12px 28px rgb(0 0 0 / 0.48), inset 0 1px 0 rgb(255 255 255 / 0.07);
+    --shadow-showcase-dark: 0 20px 44px rgb(0 0 0 / 0.56), inset 0 1px 0 rgb(255 255 255 / 0.09);
 
     --bg-page: var(--bg-page-light);
+    --bg-header: var(--bg-header-light);
+    --bg-rail: var(--bg-rail-light);
     --bg-surface: var(--bg-surface-light);
     --bg-surface-2: var(--bg-surface-2-light);
+    --bg-showcase-panel: var(--bg-showcase-panel-light);
     --bg-elevated: var(--bg-elevated-light);
+    --bg-media: var(--bg-media-light);
     --text-main: var(--text-main-light);
     --text-muted: var(--text-muted-light);
     --border-subtle: var(--border-subtle-light);
@@ -109,8 +159,26 @@
     --accent-primary: var(--accent-primary-light);
     --accent-primary-hover: var(--accent-primary-hover-light);
     --accent-on-primary: var(--accent-on-primary-light);
+    --accent-download: var(--accent-download-light);
+    --accent-download-hover: var(--accent-download-hover-light);
+    --accent-on-download: var(--accent-on-download-light);
+    --accent-indie: var(--accent-indie-light);
+    --accent-indie-hover: var(--accent-indie-hover-light);
+    --accent-on-indie: var(--accent-on-indie-light);
     --accent-secondary: var(--accent-secondary-light);
+    --free-bg: var(--free-bg-light);
+    --free-text: var(--free-text-light);
+    --badge-app-bg: var(--badge-app-bg-light);
+    --badge-app-fg: var(--badge-app-fg-light);
+    --badge-jogo-bg: var(--badge-jogo-bg-light);
+    --badge-jogo-fg: var(--badge-jogo-fg-light);
+    --badge-mod-bg: var(--badge-mod-bg-light);
+    --badge-mod-fg: var(--badge-mod-fg-light);
+    --cat-app: var(--cat-app-light);
+    --cat-jogo: var(--cat-jogo-light);
+    --cat-mod: var(--cat-mod-light);
     --shadow-card: var(--shadow-card-light);
+    --shadow-showcase: var(--shadow-showcase-light);
     --scrollbar-track: #e2e8f0;
     --scrollbar-thumb: #64748b;
 
@@ -122,9 +190,13 @@
 
     @media (prefers-color-scheme: dark) {
       --bg-page: var(--bg-page-dark);
+      --bg-header: var(--bg-header-dark);
+      --bg-rail: var(--bg-rail-dark);
       --bg-surface: var(--bg-surface-dark);
       --bg-surface-2: var(--bg-surface-2-dark);
+      --bg-showcase-panel: var(--bg-showcase-panel-dark);
       --bg-elevated: var(--bg-elevated-dark);
+      --bg-media: var(--bg-media-dark);
       --text-main: var(--text-main-dark);
       --text-muted: var(--text-muted-dark);
       --border-subtle: var(--border-subtle-dark);
@@ -132,17 +204,39 @@
       --accent-primary: var(--accent-primary-dark);
       --accent-primary-hover: var(--accent-primary-hover-dark);
       --accent-on-primary: var(--accent-on-primary-dark);
+      --accent-download: var(--accent-download-dark);
+      --accent-download-hover: var(--accent-download-hover-dark);
+      --accent-on-download: var(--accent-on-download-dark);
+      --accent-indie: var(--accent-indie-dark);
+      --accent-indie-hover: var(--accent-indie-hover-dark);
+      --accent-on-indie: var(--accent-on-indie-dark);
       --accent-secondary: var(--accent-secondary-dark);
+      --free-bg: var(--free-bg-dark);
+      --free-text: var(--free-text-dark);
+      --badge-app-bg: var(--badge-app-bg-dark);
+      --badge-app-fg: var(--badge-app-fg-dark);
+      --badge-jogo-bg: var(--badge-jogo-bg-dark);
+      --badge-jogo-fg: var(--badge-jogo-fg-dark);
+      --badge-mod-bg: var(--badge-mod-bg-dark);
+      --badge-mod-fg: var(--badge-mod-fg-dark);
+      --cat-app: var(--cat-app-dark);
+      --cat-jogo: var(--cat-jogo-dark);
+      --cat-mod: var(--cat-mod-dark);
       --shadow-card: var(--shadow-card-dark);
-      --scrollbar-track: #0b1120;
-      --scrollbar-thumb: #475569;
+      --shadow-showcase: var(--shadow-showcase-dark);
+      --scrollbar-track: #0b0e14;
+      --scrollbar-thumb: #4b5563;
     }
 
     @supports (color: light-dark(white, black)) {
       --bg-page: light-dark(var(--bg-page-light), var(--bg-page-dark));
+      --bg-header: light-dark(var(--bg-header-light), var(--bg-header-dark));
+      --bg-rail: light-dark(var(--bg-rail-light), var(--bg-rail-dark));
       --bg-surface: light-dark(var(--bg-surface-light), var(--bg-surface-dark));
       --bg-surface-2: light-dark(var(--bg-surface-2-light), var(--bg-surface-2-dark));
+      --bg-showcase-panel: light-dark(var(--bg-showcase-panel-light), var(--bg-showcase-panel-dark));
       --bg-elevated: light-dark(var(--bg-elevated-light), var(--bg-elevated-dark));
+      --bg-media: light-dark(var(--bg-media-light), var(--bg-media-dark));
       --text-main: light-dark(var(--text-main-light), var(--text-main-dark));
       --text-muted: light-dark(var(--text-muted-light), var(--text-muted-dark));
       --border-subtle: light-dark(var(--border-subtle-light), var(--border-subtle-dark));
@@ -150,10 +244,28 @@
       --accent-primary: light-dark(var(--accent-primary-light), var(--accent-primary-dark));
       --accent-primary-hover: light-dark(var(--accent-primary-hover-light), var(--accent-primary-hover-dark));
       --accent-on-primary: light-dark(var(--accent-on-primary-light), var(--accent-on-primary-dark));
+      --accent-download: light-dark(var(--accent-download-light), var(--accent-download-dark));
+      --accent-download-hover: light-dark(var(--accent-download-hover-light), var(--accent-download-hover-dark));
+      --accent-on-download: light-dark(var(--accent-on-download-light), var(--accent-on-download-dark));
+      --accent-indie: light-dark(var(--accent-indie-light), var(--accent-indie-dark));
+      --accent-indie-hover: light-dark(var(--accent-indie-hover-light), var(--accent-indie-hover-dark));
+      --accent-on-indie: light-dark(var(--accent-on-indie-light), var(--accent-on-indie-dark));
       --accent-secondary: light-dark(var(--accent-secondary-light), var(--accent-secondary-dark));
+      --free-bg: light-dark(var(--free-bg-light), var(--free-bg-dark));
+      --free-text: light-dark(var(--free-text-light), var(--free-text-dark));
+      --badge-app-bg: light-dark(var(--badge-app-bg-light), var(--badge-app-bg-dark));
+      --badge-app-fg: light-dark(var(--badge-app-fg-light), var(--badge-app-fg-dark));
+      --badge-jogo-bg: light-dark(var(--badge-jogo-bg-light), var(--badge-jogo-bg-dark));
+      --badge-jogo-fg: light-dark(var(--badge-jogo-fg-light), var(--badge-jogo-fg-dark));
+      --badge-mod-bg: light-dark(var(--badge-mod-bg-light), var(--badge-mod-bg-dark));
+      --badge-mod-fg: light-dark(var(--badge-mod-fg-light), var(--badge-mod-fg-dark));
+      --cat-app: light-dark(var(--cat-app-light), var(--cat-app-dark));
+      --cat-jogo: light-dark(var(--cat-jogo-light), var(--cat-jogo-dark));
+      --cat-mod: light-dark(var(--cat-mod-light), var(--cat-mod-dark));
       --shadow-card: light-dark(var(--shadow-card-light), var(--shadow-card-dark));
-      --scrollbar-track: light-dark(#e2e8f0, #0b1120);
-      --scrollbar-thumb: light-dark(#64748b, #475569);
+      --shadow-showcase: light-dark(var(--shadow-showcase-light), var(--shadow-showcase-dark));
+      --scrollbar-track: light-dark(#e2e8f0, #0b0e14);
+      --scrollbar-thumb: light-dark(#64748b, #4b5563);
     }
 
     scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
@@ -168,9 +280,13 @@
   :root[data-theme="dark"] {
     color-scheme: dark;
     --bg-page: var(--bg-page-dark);
+    --bg-header: var(--bg-header-dark);
+    --bg-rail: var(--bg-rail-dark);
     --bg-surface: var(--bg-surface-dark);
     --bg-surface-2: var(--bg-surface-2-dark);
+    --bg-showcase-panel: var(--bg-showcase-panel-dark);
     --bg-elevated: var(--bg-elevated-dark);
+    --bg-media: var(--bg-media-dark);
     --text-main: var(--text-main-dark);
     --text-muted: var(--text-muted-dark);
     --border-subtle: var(--border-subtle-dark);
@@ -178,18 +294,40 @@
     --accent-primary: var(--accent-primary-dark);
     --accent-primary-hover: var(--accent-primary-hover-dark);
     --accent-on-primary: var(--accent-on-primary-dark);
+    --accent-download: var(--accent-download-dark);
+    --accent-download-hover: var(--accent-download-hover-dark);
+    --accent-on-download: var(--accent-on-download-dark);
+    --accent-indie: var(--accent-indie-dark);
+    --accent-indie-hover: var(--accent-indie-hover-dark);
+    --accent-on-indie: var(--accent-on-indie-dark);
     --accent-secondary: var(--accent-secondary-dark);
+    --free-bg: var(--free-bg-dark);
+    --free-text: var(--free-text-dark);
+    --badge-app-bg: var(--badge-app-bg-dark);
+    --badge-app-fg: var(--badge-app-fg-dark);
+    --badge-jogo-bg: var(--badge-jogo-bg-dark);
+    --badge-jogo-fg: var(--badge-jogo-fg-dark);
+    --badge-mod-bg: var(--badge-mod-bg-dark);
+    --badge-mod-fg: var(--badge-mod-fg-dark);
+    --cat-app: var(--cat-app-dark);
+    --cat-jogo: var(--cat-jogo-dark);
+    --cat-mod: var(--cat-mod-dark);
     --shadow-card: var(--shadow-card-dark);
-    --scrollbar-track: #0b1120;
-    --scrollbar-thumb: #475569;
+    --shadow-showcase: var(--shadow-showcase-dark);
+    --scrollbar-track: #0b0e14;
+    --scrollbar-thumb: #4b5563;
   }
 
   :root[data-theme="light"] {
     color-scheme: light;
     --bg-page: var(--bg-page-light);
+    --bg-header: var(--bg-header-light);
+    --bg-rail: var(--bg-rail-light);
     --bg-surface: var(--bg-surface-light);
     --bg-surface-2: var(--bg-surface-2-light);
+    --bg-showcase-panel: var(--bg-showcase-panel-light);
     --bg-elevated: var(--bg-elevated-light);
+    --bg-media: var(--bg-media-light);
     --text-main: var(--text-main-light);
     --text-muted: var(--text-muted-light);
     --border-subtle: var(--border-subtle-light);
@@ -197,10 +335,64 @@
     --accent-primary: var(--accent-primary-light);
     --accent-primary-hover: var(--accent-primary-hover-light);
     --accent-on-primary: var(--accent-on-primary-light);
+    --accent-download: var(--accent-download-light);
+    --accent-download-hover: var(--accent-download-hover-light);
+    --accent-on-download: var(--accent-on-download-light);
+    --accent-indie: var(--accent-indie-light);
+    --accent-indie-hover: var(--accent-indie-hover-light);
+    --accent-on-indie: var(--accent-on-indie-light);
     --accent-secondary: var(--accent-secondary-light);
+    --free-bg: var(--free-bg-light);
+    --free-text: var(--free-text-light);
+    --badge-app-bg: var(--badge-app-bg-light);
+    --badge-app-fg: var(--badge-app-fg-light);
+    --badge-jogo-bg: var(--badge-jogo-bg-light);
+    --badge-jogo-fg: var(--badge-jogo-fg-light);
+    --badge-mod-bg: var(--badge-mod-bg-light);
+    --badge-mod-fg: var(--badge-mod-fg-light);
+    --cat-app: var(--cat-app-light);
+    --cat-jogo: var(--cat-jogo-light);
+    --cat-mod: var(--cat-mod-light);
     --shadow-card: var(--shadow-card-light);
+    --shadow-showcase: var(--shadow-showcase-light);
     --scrollbar-track: #e2e8f0;
     --scrollbar-thumb: #64748b;
+  }
+
+  @media (forced-colors: active) {
+    :root {
+      --bg-page: Canvas;
+      --bg-header: Canvas;
+      --bg-rail: Canvas;
+      --bg-surface: Canvas;
+      --bg-surface-2: Canvas;
+      --bg-showcase-panel: Canvas;
+      --bg-elevated: Canvas;
+      --bg-media: Canvas;
+      --text-main: CanvasText;
+      --text-muted: GrayText;
+      --border-subtle: CanvasText;
+      --border-strong: Highlight;
+      --accent-primary: Highlight;
+      --accent-on-primary: HighlightText;
+      --accent-download: Highlight;
+      --accent-on-download: HighlightText;
+      --accent-indie: Highlight;
+      --accent-on-indie: HighlightText;
+      --free-bg: Canvas;
+      --free-text: CanvasText;
+      --badge-app-bg: Canvas;
+      --badge-app-fg: CanvasText;
+      --badge-jogo-bg: Canvas;
+      --badge-jogo-fg: CanvasText;
+      --badge-mod-bg: Canvas;
+      --badge-mod-fg: CanvasText;
+      --cat-app: Highlight;
+      --cat-jogo: Highlight;
+      --cat-mod: Highlight;
+      --shadow-card: none;
+      --shadow-showcase: none;
+    }
   }
 
   html {
@@ -215,9 +407,27 @@
     line-height: 1.55;
     color: var(--text-main);
     background-color: var(--bg-page);
+    background-image:
+      radial-gradient(
+        ellipse 90% 420px at 20% 0%,
+        color-mix(in oklab, var(--accent-primary) 13%, transparent),
+        transparent 70%
+      ),
+      radial-gradient(
+        ellipse 70% 360px at 85% 0%,
+        color-mix(in oklab, var(--accent-indie) 10%, transparent),
+        transparent 70%
+      );
+    background-repeat: no-repeat;
     min-block-size: 100dvh;
     display: flex;
     flex-direction: column;
+  }
+
+  @media (forced-colors: active) {
+    body {
+      background-image: none;
+    }
   }
 
   main {
@@ -303,12 +513,13 @@
     text-decoration: none;
   }
 
-  /* Store Top Bar */
+  /* Store Top Bar (ancorada como barra da Steam) */
   .store-header {
     z-index: 25;
-    background-color: color-mix(in oklab, var(--bg-surface) 92%, transparent);
+    background-color: color-mix(in oklab, var(--bg-header) 95%, transparent);
     backdrop-filter: blur(12px);
     border-block-end: 1px solid var(--border-subtle);
+    box-shadow: 0 4px 16px rgb(0 0 0 / 0.14);
   }
 
   @media (min-width: 720px) {
@@ -340,16 +551,36 @@
   .brand-link {
     display: inline-flex;
     align-items: center;
+    gap: 0.55rem;
     flex: none;
     min-block-size: 42px;
     border-radius: var(--radius-sm);
+    text-decoration: none;
   }
 
-  .brand-logo {
+  .brand-mark {
+    inline-size: 36px;
     block-size: 36px;
-    inline-size: auto;
-    max-inline-size: none;
     flex: none;
+  }
+
+  .brand-wordmark {
+    display: grid;
+    line-height: 1.02;
+  }
+
+  .brand-name {
+    color: var(--text-main);
+    font-size: 0.98rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+  }
+
+  .brand-sub {
+    color: var(--accent-primary);
+    font-size: 0.64rem;
+    font-weight: 800;
+    letter-spacing: 0.24em;
   }
 
   .store-nav {
@@ -483,6 +714,25 @@
     background-color: var(--accent-primary-hover);
   }
 
+  .btn-download {
+    background-color: var(--accent-download);
+    color: var(--accent-on-download);
+    box-shadow: 0 2px 10px color-mix(in oklab, var(--accent-download) 30%, transparent);
+  }
+
+  .btn-download:hover:not(:disabled) {
+    background-color: var(--accent-download-hover);
+  }
+
+  .btn-indie {
+    background-color: var(--accent-indie);
+    color: var(--accent-on-indie);
+  }
+
+  .btn-indie:hover:not(:disabled) {
+    background-color: var(--accent-indie-hover);
+  }
+
   .btn-secondary {
     background-color: var(--bg-surface-2);
     color: var(--text-main);
@@ -526,75 +776,256 @@
     }
   }
 
-  /* Compact Spotlight Strip */
-  .spotlight-card {
+  /* Featured Showcase (estilo Vitrine Steam) */
+  .showcase-shell {
+    display: grid;
+    gap: 0.75rem;
+    min-inline-size: 0;
+  }
+
+  .showcase-topbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 0.5rem 1rem;
+  }
+
+  .showcase-heading-group {
+    display: grid;
+    gap: 0.1rem;
+  }
+
+  .eyebrow-indie {
+    color: var(--accent-indie);
+  }
+
+  .showcase-nav-controls {
+    display: inline-flex;
+    gap: 0.4rem;
+  }
+
+  .showcase-stage {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    gap: 1rem;
-    align-items: center;
-    padding: 0.9rem 1.15rem;
     border-radius: var(--radius-lg);
-    background: linear-gradient(
-      120deg var(--in-oklab),
-      color-mix(in oklab, var(--accent-primary) 13%, var(--bg-surface)),
-      color-mix(in oklab, var(--accent-secondary) 11%, var(--bg-surface))
-    );
-    border: 1px solid var(--border-strong);
-    box-shadow: var(--shadow-card);
-  }
-
-  @media (min-width: 780px) {
-    .spotlight-card {
-      grid-template-columns: 180px 1fr auto;
-      gap: 1.25rem;
-    }
-  }
-
-  .spotlight-media {
-    display: none;
-    aspect-ratio: 16 / 9;
-    border-radius: var(--radius-md);
-    overflow: hidden;
+    overflow: clip;
+    background-color: var(--bg-surface);
     border: 1px solid var(--border-subtle);
-    background-color: var(--bg-surface-2);
+    box-shadow: var(--shadow-showcase);
   }
 
-  @media (min-width: 600px) {
-    .spotlight-media {
-      display: block;
+  @media (min-width: 900px) {
+    .showcase-stage {
+      grid-template-columns: minmax(0, 1.45fr) minmax(300px, 1fr);
     }
   }
 
-  .spotlight-media img {
+  .showcase-main-media {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background-color: var(--bg-media);
+    overflow: clip;
+  }
+
+  @media (min-width: 900px) {
+    .showcase-main-media {
+      aspect-ratio: auto;
+      min-block-size: 100%;
+    }
+  }
+
+  .showcase-main-media img {
     inline-size: 100%;
     block-size: 100%;
     object-fit: cover;
+    transition: transform 0.28s ease;
   }
 
-  .spotlight-body {
+  .showcase-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    padding: 1rem 1.15rem;
+    background-color: var(--bg-showcase-panel);
+    border-block-start: 1px solid var(--border-subtle);
+    min-inline-size: 0;
+  }
+
+  @media (min-width: 900px) {
+    .showcase-info {
+      border-block-start: 0;
+      border-inline-start: 1px solid var(--border-subtle);
+      padding: 1.15rem 1.25rem;
+    }
+  }
+
+  .showcase-brand-row {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    min-inline-size: 0;
+  }
+
+  .showcase-app-logo {
+    inline-size: 46px;
+    block-size: 46px;
+    border-radius: var(--radius-sm);
+    object-fit: cover;
+    border: 1px solid var(--border-subtle);
+    background-color: var(--bg-media);
+    flex: none;
+  }
+
+  .showcase-title-wrap {
     display: grid;
-    gap: 0.35rem;
+    gap: 0.25rem;
+    min-inline-size: 0;
   }
 
   .spotlight-meta {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 0.45rem;
+    gap: 0.35rem;
+  }
+
+  .showcase-project-title {
+    font-size: clamp(1.1rem, 1rem + 0.45vw, 1.35rem);
+    line-height: 1.15;
+    overflow-wrap: anywhere;
   }
 
   .spotlight-desc {
     color: var(--text-muted);
-    font-size: 0.92rem;
+    font-size: 0.9rem;
+    line-height: 1.48;
+  }
+
+  .showcase-thumbs {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.45rem;
+  }
+
+  .showcase-thumb-btn {
+    padding: 0;
+    aspect-ratio: 16 / 9;
+    border-radius: 6px;
+    border: 2px solid var(--border-subtle);
+    background-color: var(--bg-media);
+    overflow: clip;
+    cursor: pointer;
+    opacity: 0.72;
+    transition: border-color 0.15s ease, opacity 0.15s ease, transform 0.15s ease;
+  }
+
+  .showcase-thumb-btn:hover,
+  .showcase-thumb-btn[aria-pressed="true"] {
+    opacity: 1;
+    border-color: var(--accent-primary);
+  }
+
+  .showcase-thumb-btn img {
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+  }
+
+  .showcase-tags {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    flex-wrap: balance;
+    gap: 0.35rem;
+  }
+
+  .showcase-tag,
+  .card-tag {
+    padding: 0.16rem 0.52rem;
+    border-radius: 6px;
+    background-color: var(--bg-surface-2);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-muted);
+    font-size: 0.74rem;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+
+  .showcase-footer-bar {
+    margin-block-start: auto;
+    padding-block-start: 0.7rem;
+    border-block-start: 1px solid var(--border-subtle);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.65rem;
+  }
+
+  .showcase-price-tag {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.45rem;
+  }
+
+  .showcase-meta-text {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-muted);
   }
 
   .spotlight-actions {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
+    gap: 0.45rem;
   }
 
-  /* Marketplace Layout: Sidebar + Store Grid */
+  .showcase-switcher {
+    display: flex;
+    flex-wrap: wrap;
+    flex-wrap: balance;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+  }
+
+  .switcher-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    min-block-size: 36px;
+    padding: 0.3rem 0.75rem;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--border-subtle);
+    background-color: var(--bg-surface);
+    color: var(--text-muted);
+    font-size: 0.82rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+  }
+
+  .switcher-pill img {
+    inline-size: 18px;
+    block-size: 18px;
+    border-radius: 4px;
+    object-fit: cover;
+  }
+
+  .switcher-pill:hover {
+    color: var(--text-main);
+    border-color: var(--border-strong);
+  }
+
+  .switcher-pill[aria-pressed="true"] {
+    background-color: color-mix(in oklab, var(--accent-primary) 16%, var(--bg-surface));
+    border-color: var(--accent-primary);
+    color: var(--text-main);
+  }
+
+  /* Marketplace Layout: Rail Lateral Discreta + Vitrine */
   .marketplace-layout {
     display: grid;
     gap: 1.25rem;
@@ -603,7 +1034,7 @@
 
   @media (min-width: 880px) {
     .marketplace-layout {
-      grid-template-columns: 256px 1fr;
+      grid-template-columns: 248px 1fr;
       gap: 1.5rem;
     }
   }
@@ -617,21 +1048,21 @@
     .store-sidebar {
       position: sticky;
       inset-block-start: 82px;
-      gap: 0.9rem;
+      gap: 0.85rem;
     }
   }
 
   .sidebar-panel {
     padding: 0.85rem;
     border-radius: var(--radius-md);
-    background-color: var(--bg-surface);
+    background-color: var(--bg-rail);
     border: 1px solid var(--border-subtle);
     display: grid;
     gap: 0.6rem;
   }
 
   .sidebar-title {
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.06em;
@@ -694,7 +1125,7 @@
     padding: 0.25rem 0.7rem;
     border-radius: var(--radius-pill);
     border: 1px solid var(--border-subtle);
-    background-color: var(--bg-page);
+    background-color: var(--bg-surface);
     font-size: 0.84rem;
     font-weight: 600;
     cursor: pointer;
@@ -712,7 +1143,7 @@
     padding: 0.45rem 0.7rem;
     border-radius: var(--radius-sm);
     border: 1px solid var(--border-subtle);
-    background-color: var(--bg-page);
+    background-color: var(--bg-surface);
     color: var(--text-main);
     font-weight: 600;
   }
@@ -721,9 +1152,10 @@
     display: none;
     background: linear-gradient(
       145deg var(--in-oklab),
-      color-mix(in oklab, var(--accent-secondary) 12%, var(--bg-surface)),
+      color-mix(in oklab, var(--accent-indie) 12%, var(--bg-surface)),
       var(--bg-surface)
     );
+    border-color: color-mix(in oklab, var(--accent-indie) 32%, var(--border-subtle));
   }
 
   @media (min-width: 880px) {
@@ -742,6 +1174,7 @@
     container-type: inline-size;
     display: grid;
     gap: 0.9rem;
+    min-inline-size: 0;
   }
 
   .catalog-toolbar {
@@ -750,9 +1183,9 @@
     justify-content: space-between;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.65rem 0.9rem;
+    padding: 0.55rem 0.85rem;
     border-radius: var(--radius-md);
-    background-color: var(--bg-surface);
+    background-color: var(--bg-rail);
     border: 1px solid var(--border-subtle);
   }
 
@@ -765,7 +1198,7 @@
   .store-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: 1.05rem;
   }
 
   @container (min-width: 560px) {
@@ -785,75 +1218,103 @@
     flex-direction: column;
     background-color: var(--bg-surface);
     border: 1px solid var(--border-subtle);
+    border-block-start: 3px solid var(--cat-app);
     border-radius: var(--radius-md);
-    overflow: hidden;
+    overflow: clip;
     box-shadow: var(--shadow-card);
-    transition: border-color 0.18s ease, transform 0.18s ease;
+    transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+  }
+
+  .store-card[data-category="jogo"] {
+    border-block-start-color: var(--cat-jogo);
+  }
+
+  .store-card[data-category="mod"] {
+    border-block-start-color: var(--cat-mod);
   }
 
   @media (prefers-reduced-motion: no-preference) {
     .store-card:hover {
       border-color: var(--border-strong);
-      transform: translateY(-2px);
+      border-block-start-color: var(--cat-app);
+      transform: translateY(-3px);
+    }
+
+    .store-card[data-category="jogo"]:hover {
+      border-block-start-color: var(--cat-jogo);
+    }
+
+    .store-card[data-category="mod"]:hover {
+      border-block-start-color: var(--cat-mod);
+    }
+
+    .store-card:hover .card-banner img {
+      transform: scale(1.03);
     }
   }
 
   .card-banner {
-    position: relative;
+    display: block;
+    inline-size: 100%;
+    padding: 0;
+    border: 0;
     aspect-ratio: 16 / 9;
-    background-color: var(--bg-surface-2);
-    overflow: hidden;
+    background-color: var(--bg-media);
+    overflow: clip;
+    cursor: pointer;
   }
 
   .card-banner img {
     inline-size: 100%;
     block-size: 100%;
     object-fit: cover;
-  }
-
-  .card-badges-overlay {
-    position: absolute;
-    inset-block-start: 0.6rem;
-    inset-inline: 0.6rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 0.4rem;
-    pointer-events: none;
+    transition: transform 0.25s ease;
   }
 
   .version-pill {
-    padding: 0.2rem 0.55rem;
+    padding: 0.14rem 0.5rem;
     border-radius: var(--radius-pill);
-    background-color: rgb(9 13 22 / 0.84);
-    color: #f8fafc;
-    border: 1px solid rgb(148 163 184 / 0.35);
+    background-color: var(--bg-surface-2);
+    color: var(--text-muted);
+    border: 1px solid var(--border-subtle);
     font-family: var(--font-mono);
-    font-size: 0.74rem;
+    font-size: 0.72rem;
     font-weight: 700;
   }
 
   .badge {
     display: inline-flex;
     align-items: center;
-    padding: 0.2rem 0.6rem;
+    padding: 0.16rem 0.55rem;
     border-radius: var(--radius-pill);
-    font-size: 0.74rem;
+    font-size: 0.72rem;
     font-weight: 800;
     letter-spacing: 0.04em;
     text-transform: uppercase;
-    background-color: rgb(2 132 199 / 0.88);
-    color: #ffffff;
+    background-color: var(--badge-app-bg);
+    color: var(--badge-app-fg);
+    border: 1px solid transparent;
   }
 
   .badge-jogo {
-    background-color: rgb(219 39 119 / 0.9);
-    color: #ffffff;
+    background-color: var(--badge-jogo-bg);
+    color: var(--badge-jogo-fg);
   }
 
   .badge-mod {
-    background-color: rgb(5 150 105 / 0.9);
-    color: #ffffff;
+    background-color: var(--badge-mod-bg);
+    color: var(--badge-mod-fg);
+  }
+
+  .badge-indie {
+    background-color: var(--accent-indie);
+    color: var(--accent-on-indie);
+  }
+
+  .badge-free {
+    background-color: var(--free-bg);
+    color: var(--free-text);
+    border: 1px solid color-mix(in oklab, var(--accent-download) 35%, transparent);
   }
 
   .badge-accent {
@@ -866,55 +1327,84 @@
     display: flex;
     flex-direction: column;
     flex: 1;
-    gap: 0.55rem;
-    padding: 0.95rem 1rem;
+    gap: 0.6rem;
+    padding: 0.95rem 1rem 1rem;
   }
 
-  .card-title-row {
+  .card-header {
     display: flex;
     align-items: center;
-    gap: 0.6rem;
+    gap: 0.65rem;
   }
 
   .card-app-logo {
-    inline-size: 36px;
-    block-size: 36px;
+    inline-size: 44px;
+    block-size: 44px;
     border-radius: var(--radius-sm);
     object-fit: cover;
     border: 1px solid var(--border-subtle);
-    background-color: var(--bg-surface-2);
+    background-color: var(--bg-media);
     flex: none;
   }
 
+  .card-title-col {
+    display: grid;
+    gap: 0.25rem;
+    min-inline-size: 0;
+  }
+
   .card-title {
-    font-size: 1.05rem;
+    font-size: 1.04rem;
+    line-height: 1.2;
+  }
+
+  .card-badges-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.3rem;
   }
 
   .card-summary {
     color: var(--text-muted);
-    font-size: 0.88rem;
+    font-size: 0.87rem;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
-    overflow: hidden;
-    flex: 1;
+    line-clamp: 2;
+    overflow: clip;
+  }
+
+  .card-tags {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    flex-wrap: balance;
+    gap: 0.3rem;
+    margin-block-end: auto;
+  }
+
+  .card-footer {
+    display: grid;
+    gap: 0.55rem;
+    padding-block-start: 0.55rem;
+    border-block-start: 1px solid var(--border-subtle);
   }
 
   .card-specs {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
     gap: 0.35rem 0.75rem;
     font-size: 0.8rem;
+    font-weight: 600;
     color: var(--text-muted);
-    padding-block-start: 0.35rem;
-    border-block-start: 1px solid var(--border-subtle);
   }
 
   .card-actions {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0.5rem;
-    margin-block-start: 0.25rem;
   }
 
   .empty-state {
@@ -1096,7 +1586,7 @@
   .site-footer {
     padding-block: 1.35rem;
     border-block-start: 1px solid var(--border-subtle);
-    background-color: var(--bg-surface);
+    background-color: var(--bg-header);
   }
 
   .footer-inner {
@@ -1351,23 +1841,32 @@
 
   .tablist {
     display: flex;
-    overflow-x: auto;
-    gap: 0.25rem;
+    flex-wrap: wrap;
+    gap: 0.2rem 0.35rem;
     border-block-end: 1px solid var(--border-subtle);
-    scroll-snap-type: inline proximity;
   }
 
   .tablist button {
     position: relative;
-    flex: none;
-    min-block-size: 42px;
-    padding: 0.5rem 0.9rem;
+    flex: 1 1 auto;
+    min-block-size: 40px;
+    padding: 0.45rem 0.65rem;
     border: 0;
     background: transparent;
     color: var(--text-muted);
     font-weight: 700;
+    font-size: 0.86rem;
+    white-space: nowrap;
     cursor: pointer;
-    scroll-snap-align: start;
+  }
+
+  @media (min-width: 560px) {
+    .tablist button {
+      flex: none;
+      min-block-size: 42px;
+      padding: 0.5rem 0.9rem;
+      font-size: 0.92rem;
+    }
   }
 
   .tablist button[aria-selected="true"] {
@@ -1633,6 +2132,8 @@
   @media (pointer: coarse) {
     .btn,
     .cat-btn,
+    .chip-btn,
+    .switcher-pill,
     .nav-tab {
       min-block-size: 44px;
     }

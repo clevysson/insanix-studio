@@ -22,10 +22,19 @@
     searchInput: document.getElementById('project-search'),
     themeToggle: document.getElementById('theme-toggle'),
     spotlightCover: document.getElementById('spotlight-cover'),
+    spotlightLogo: document.getElementById('spotlight-logo'),
+    spotlightTitle: document.getElementById('spotlight-title'),
     spotlightBadge: document.getElementById('spotlight-badge'),
     spotlightVersion: document.getElementById('spotlight-version'),
     spotlightText: document.getElementById('spotlight-text'),
+    spotlightThumbs: document.getElementById('spotlight-thumbs'),
+    spotlightTags: document.getElementById('spotlight-tags'),
+    spotlightMetaLine: document.getElementById('spotlight-meta-line'),
+    spotlightDownloadBtn: document.getElementById('spotlight-download-btn'),
     spotlightOpenBtn: document.getElementById('spotlight-open-btn'),
+    spotlightPrev: document.getElementById('spotlight-prev'),
+    spotlightNext: document.getElementById('spotlight-next'),
+    spotlightSwitcher: document.getElementById('spotlight-switcher'),
     heroGithubLink: document.getElementById('hero-github-link'),
     catButtons: Array.from(document.querySelectorAll('.cat-btn')),
     platformButtons: Array.from(document.querySelectorAll('.chip-btn')),
@@ -477,23 +486,152 @@
     if (els.countJogo) els.countJogo.textContent = String((byCategory.jogo ?? []).length);
     if (els.countMod) els.countMod.textContent = String((byCategory.mod ?? []).length);
 
-    // Spotlight Banner
-    const spotlight = projects.find((p) => p.featured) || projects[0];
-    if (spotlight) {
+    // Steam-style Featured Showcase
+    const showcaseList = projects.toSorted(
+      (a, b) => Number(Boolean(b.featured)) - Number(Boolean(a.featured)),
+    );
+    let spotlightIndex = 0;
+
+    const renderSpotlight = (index) => {
+      if (showcaseList.length === 0) return;
+      spotlightIndex = ((index % showcaseList.length) + showcaseList.length) % showcaseList.length;
+      const spotlight = showcaseList[spotlightIndex];
+
+      const screenshots =
+        Array.isArray(spotlight.screenshots) && spotlight.screenshots.length > 0
+          ? spotlight.screenshots.slice(0, 4)
+          : [spotlight.cover].filter(Boolean);
+
       if (els.spotlightCover) {
-        els.spotlightCover.src = spotlight.cover;
+        els.spotlightCover.src = screenshots[0] || spotlight.cover;
         els.spotlightCover.alt = spotlight.coverAlt || spotlight.title;
+      }
+
+      if (els.spotlightLogo) {
+        if (spotlight.logo) {
+          els.spotlightLogo.src = spotlight.logo;
+          els.spotlightLogo.alt = `Logo de ${spotlight.title}`;
+          els.spotlightLogo.hidden = false;
+        } else {
+          els.spotlightLogo.hidden = true;
+        }
+      }
+
+      if (els.spotlightTitle) {
+        els.spotlightTitle.textContent = spotlight.title;
       }
       if (els.spotlightBadge) {
         els.spotlightBadge.className = getCategoryBadgeClass(spotlight.category);
         els.spotlightBadge.textContent = spotlight.categoryLabel;
       }
-      if (els.spotlightVersion) els.spotlightVersion.textContent = spotlight.version;
-      if (els.spotlightText) {
-        els.spotlightText.textContent = `${spotlight.title} — ${spotlight.summary}`;
+      if (els.spotlightVersion) {
+        els.spotlightVersion.textContent = spotlight.version;
       }
-      els.spotlightOpenBtn?.addEventListener('click', () => openProjectModal(spotlight));
+      if (els.spotlightText) {
+        els.spotlightText.textContent = spotlight.summary;
+      }
+      if (els.spotlightMetaLine) {
+        const plat = spotlight.platforms?.[0] || 'PC';
+        els.spotlightMetaLine.textContent = `${plat} • ${spotlight.size}`;
+      }
+      if (els.spotlightDownloadBtn) {
+        els.spotlightDownloadBtn.href = spotlight.downloadUrl;
+        els.spotlightDownloadBtn.setAttribute('aria-label', `Baixar — ${spotlight.title}`);
+      }
+
+      if (els.spotlightThumbs) {
+        const thumbButtons = screenshots.map((src, thumbIdx) => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'showcase-thumb-btn';
+          btn.setAttribute('aria-label', `Ver captura ${thumbIdx + 1} de ${spotlight.title}`);
+          btn.setAttribute('aria-pressed', String(thumbIdx === 0));
+          const img = document.createElement('img');
+          img.src = src;
+          img.alt = '';
+          img.width = 160;
+          img.height = 90;
+          img.loading = 'lazy';
+          btn.append(img);
+
+          const activateThumb = () => {
+            if (els.spotlightCover) {
+              els.spotlightCover.src = src;
+              els.spotlightCover.alt = `${spotlight.title} — Captura ${thumbIdx + 1}`;
+            }
+            for (const other of els.spotlightThumbs.querySelectorAll('.showcase-thumb-btn')) {
+              other.setAttribute('aria-pressed', String(other === btn));
+            }
+          };
+
+          btn.addEventListener('click', activateThumb);
+          btn.addEventListener('pointerenter', activateThumb);
+          return btn;
+        });
+        els.spotlightThumbs.replaceChildren(...thumbButtons);
+      }
+
+      if (els.spotlightTags) {
+        const tagItems = (spotlight.tags || []).slice(0, 4).map((tag) => {
+          const li = document.createElement('li');
+          li.className = 'showcase-tag';
+          li.textContent = tag;
+          return li;
+        });
+        els.spotlightTags.replaceChildren(...tagItems);
+      }
+
+      if (els.spotlightSwitcher) {
+        for (const tab of els.spotlightSwitcher.querySelectorAll('.switcher-pill')) {
+          tab.setAttribute('aria-pressed', String(Number(tab.dataset.index) === spotlightIndex));
+        }
+      }
+    };
+
+    if (els.spotlightSwitcher && showcaseList.length > 1) {
+      const pills = showcaseList.map((item, idx) => {
+        const pill = document.createElement('button');
+        pill.type = 'button';
+        pill.className = 'switcher-pill';
+        pill.dataset.index = String(idx);
+        pill.setAttribute('aria-pressed', String(idx === 0));
+
+        if (item.logo) {
+          const img = document.createElement('img');
+          img.src = item.logo;
+          img.alt = '';
+          img.width = 20;
+          img.height = 20;
+          pill.append(img);
+        }
+
+        const label = document.createElement('span');
+        label.textContent = item.title;
+        pill.append(label);
+
+        pill.addEventListener('click', () => renderSpotlight(idx));
+        return pill;
+      });
+      els.spotlightSwitcher.replaceChildren(...pills);
+      els.spotlightSwitcher.hidden = false;
+    } else if (els.spotlightSwitcher) {
+      els.spotlightSwitcher.hidden = true;
     }
+
+    if (showcaseList.length <= 1) {
+      if (els.spotlightPrev) els.spotlightPrev.hidden = true;
+      if (els.spotlightNext) els.spotlightNext.hidden = true;
+    } else {
+      els.spotlightPrev?.addEventListener('click', () => renderSpotlight(spotlightIndex - 1));
+      els.spotlightNext?.addEventListener('click', () => renderSpotlight(spotlightIndex + 1));
+    }
+
+    els.spotlightOpenBtn?.addEventListener('click', () => {
+      const current = showcaseList[spotlightIndex];
+      if (current) openProjectModal(current);
+    });
+
+    renderSpotlight(0);
   }
 
   function getCategoryBadgeClass(category) {
@@ -765,51 +903,77 @@
     const cards = sorted.map((project) => {
       const article = document.createElement('article');
       article.className = 'store-card';
+      article.dataset.category = project.category || 'app';
 
-      const banner = document.createElement('div');
-      banner.className = 'card-banner';
+      const bannerBtn = document.createElement('button');
+      bannerBtn.type = 'button';
+      bannerBtn.className = 'card-banner';
+      bannerBtn.setAttribute('aria-label', `Abrir detalhes e capturas de ${project.title}`);
+      bannerBtn.addEventListener('click', () => openProjectModal(project));
+
       const img = document.createElement('img');
       img.src = project.cover;
-      img.alt = project.coverAlt || project.title;
+      img.alt = '';
       img.width = 400;
       img.height = 225;
       img.loading = 'lazy';
+      bannerBtn.append(img);
 
-      const overlay = document.createElement('div');
-      overlay.className = 'card-badges-overlay';
+      const content = document.createElement('div');
+      content.className = 'card-content';
+
+      const header = document.createElement('header');
+      header.className = 'card-header';
+      if (project.logo) {
+        const logoImg = document.createElement('img');
+        logoImg.className = 'card-app-logo';
+        logoImg.src = project.logo;
+        logoImg.alt = '';
+        logoImg.width = 44;
+        logoImg.height = 44;
+        logoImg.loading = 'lazy';
+        header.append(logoImg);
+      }
+
+      const titleCol = document.createElement('div');
+      titleCol.className = 'card-title-col';
+
+      const title = document.createElement('h2');
+      title.className = 'card-title';
+      title.textContent = project.title;
+
+      const badgesRow = document.createElement('div');
+      badgesRow.className = 'card-badges-row';
       const badge = document.createElement('span');
       badge.className = getCategoryBadgeClass(project.category);
       badge.textContent = project.categoryLabel;
       const version = document.createElement('span');
       version.className = 'version-pill';
       version.textContent = project.version;
-      overlay.append(badge, version);
-      banner.append(img, overlay);
+      const freeBadge = document.createElement('span');
+      freeBadge.className = 'badge badge-free';
+      freeBadge.textContent = 'Gratuito';
+      badgesRow.append(badge, version, freeBadge);
 
-      const content = document.createElement('div');
-      content.className = 'card-content';
-
-      const titleRow = document.createElement('div');
-      titleRow.className = 'card-title-row';
-      if (project.logo) {
-        const logoImg = document.createElement('img');
-        logoImg.className = 'card-app-logo';
-        logoImg.src = project.logo;
-        logoImg.alt = '';
-        logoImg.width = 36;
-        logoImg.height = 36;
-        logoImg.loading = 'lazy';
-        titleRow.append(logoImg);
-      }
-
-      const title = document.createElement('h2');
-      title.className = 'card-title';
-      title.textContent = project.title;
-      titleRow.append(title);
+      titleCol.append(title, badgesRow);
+      header.append(titleCol);
 
       const summary = document.createElement('p');
       summary.className = 'card-summary';
       summary.textContent = project.summary;
+
+      const tagsList = document.createElement('ul');
+      tagsList.className = 'card-tags';
+      tagsList.setAttribute('aria-label', `Tags de ${project.title}`);
+      for (const tag of (project.tags || []).slice(0, 3)) {
+        const li = document.createElement('li');
+        li.className = 'card-tag';
+        li.textContent = tag;
+        tagsList.append(li);
+      }
+
+      const footer = document.createElement('footer');
+      footer.className = 'card-footer';
 
       const specs = document.createElement('div');
       specs.className = 'card-specs';
@@ -817,9 +981,7 @@
       plat.textContent = project.platforms[0] || 'PC';
       const size = document.createElement('span');
       size.textContent = project.size;
-      const lic = document.createElement('span');
-      lic.textContent = 'Gratuito';
-      specs.append(plat, size, lic);
+      specs.append(plat, size);
 
       const actions = document.createElement('div');
       actions.className = 'card-actions';
@@ -828,7 +990,7 @@
       downloadBtn.href = project.downloadUrl;
       downloadBtn.target = '_blank';
       downloadBtn.rel = 'noopener noreferrer';
-      downloadBtn.className = 'btn btn-primary';
+      downloadBtn.className = 'btn btn-download';
       downloadBtn.textContent = 'Baixar';
       downloadBtn.setAttribute('aria-label', `Baixar — ${project.title}`);
 
@@ -840,8 +1002,9 @@
       infoBtn.addEventListener('click', () => openProjectModal(project));
 
       actions.append(downloadBtn, infoBtn);
-      content.append(titleRow, summary, specs, actions);
-      article.append(banner, content);
+      footer.append(specs, actions);
+      content.append(header, summary, tagsList, footer);
+      article.append(bannerBtn, content);
       return article;
     });
 

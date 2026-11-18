@@ -28,12 +28,16 @@
       <div class="header-left">
         <a href="?aba=loja" class="brand-link" data-nav="loja" aria-label="INSANIX STUDIO — Loja">
           <img
-            src="assets/img/logo.svg"
-            alt="Logo da INSANIX STUDIO"
-            width="164"
-            height="44"
-            class="brand-logo"
+            src="assets/img/logo-mark.svg"
+            alt=""
+            width="40"
+            height="40"
+            class="brand-mark"
           >
+          <span class="brand-wordmark" aria-hidden="true">
+            <span class="brand-name">INSANIX</span>
+            <span class="brand-sub">STUDIO</span>
+          </span>
         </a>
 
         <nav class="store-nav" aria-label="Navegação principal">
@@ -90,7 +94,7 @@
 
         <button
           type="button"
-          class="btn btn-primary"
+          class="btn btn-indie"
           command="show-modal"
           commandfor="donate-dialog"
         >
@@ -103,44 +107,113 @@
   <main id="main-content" tabindex="-1">
     <!-- ABA 1: MARKETPLACE / LOJA -->
     <section id="view-loja" class="store-view container" aria-labelledby="store-heading">
-      <!-- Faixa de Destaque Compacta (mantém o grid visível já na primeira tela) -->
-      <article id="spotlight-banner" class="spotlight-card" aria-label="Projeto em destaque">
-        <div class="spotlight-media">
-          <img
-            id="spotlight-cover"
-            src="assets/img/cover-app.svg"
-            alt=""
-            width="400"
-            height="225"
-            fetchpriority="high"
-          >
-        </div>
-        <div class="spotlight-body">
-          <div class="spotlight-meta">
-            <span class="badge badge-accent">Em Destaque</span>
-            <span id="spotlight-badge" class="badge">App</span>
-            <span id="spotlight-version" class="version-tag">v1.0.0</span>
+      <!-- Vitrine Principal em Destaque (estilo Steam Featured Showcase) -->
+      <section class="showcase-shell" aria-labelledby="store-heading">
+        <div class="showcase-topbar">
+          <div class="showcase-heading-group">
+            <span class="eyebrow eyebrow-indie">Vitrine em Destaque</span>
+            <h1 id="store-heading">Destaques do Estúdio</h1>
           </div>
-          <h1 id="store-heading">Marketplace INSANIX STUDIO</h1>
-          <p id="spotlight-text" class="spotlight-desc">
-            Baixe nossos apps, jogos e mods gratuitos com tutoriais passo a passo e verificação SHA-256.
-          </p>
+          <div class="showcase-nav-controls" aria-label="Alternar destaque">
+            <button
+              type="button"
+              id="spotlight-prev"
+              class="btn btn-secondary btn-icon"
+              aria-label="Projeto em destaque anterior"
+            >
+              <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18">
+                <path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <button
+              type="button"
+              id="spotlight-next"
+              class="btn btn-secondary btn-icon"
+              aria-label="Próximo projeto em destaque"
+            >
+              <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18">
+                <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
         </div>
-        <div class="spotlight-actions">
-          <button type="button" id="spotlight-open-btn" class="btn btn-primary">
-            Abrir Destaque
-          </button>
-          <a
-            id="hero-github-link"
-            href="https://github.com/clevysson/insanix-studio"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="btn btn-secondary"
-          >
-            GitHub
-          </a>
-        </div>
-      </article>
+
+        <article id="spotlight-banner" class="showcase-stage" aria-label="Projeto em destaque">
+          <div class="showcase-main-media">
+            <img
+              id="spotlight-cover"
+              src="assets/img/cover-app.svg"
+              alt=""
+              width="800"
+              height="450"
+              fetchpriority="high"
+            >
+          </div>
+
+          <div class="showcase-info">
+            <div class="showcase-brand-row">
+              <img
+                id="spotlight-logo"
+                src="assets/img/favicon.svg"
+                alt=""
+                width="44"
+                height="44"
+                class="showcase-app-logo"
+                hidden
+              >
+              <div class="showcase-title-wrap">
+                <div class="spotlight-meta">
+                  <span class="badge badge-indie">Destaque</span>
+                  <span id="spotlight-badge" class="badge">App</span>
+                  <span id="spotlight-version" class="version-pill">v1.0.0</span>
+                </div>
+                <h2 id="spotlight-title" class="showcase-project-title">INSANIX STUDIO</h2>
+              </div>
+            </div>
+
+            <p id="spotlight-text" class="spotlight-desc">
+              Baixe nossos apps, jogos e mods gratuitos com tutoriais passo a passo e verificação SHA-256.
+            </p>
+
+            <div
+              id="spotlight-thumbs"
+              class="showcase-thumbs"
+              role="group"
+              aria-label="Prévia das capturas de tela"
+            ></div>
+
+            <ul id="spotlight-tags" class="showcase-tags" aria-label="Tags do projeto"></ul>
+
+            <div class="showcase-footer-bar">
+              <div class="showcase-price-tag">
+                <span class="badge badge-free">Gratuito</span>
+                <span id="spotlight-meta-line" class="showcase-meta-text">Windows 10/11</span>
+              </div>
+              <div class="spotlight-actions">
+                <a
+                  id="spotlight-download-btn"
+                  href="#"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn btn-download"
+                >
+                  Baixar
+                </a>
+                <button type="button" id="spotlight-open-btn" class="btn btn-secondary">
+                  Guia &amp; Info
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <div
+          id="spotlight-switcher"
+          class="showcase-switcher"
+          role="group"
+          aria-label="Selecionar projeto em destaque"
+        ></div>
+      </section>
 
       <!-- Grade Principal de Marketplace: Barra Lateral de Filtros + Vitrine -->
       <div class="marketplace-layout">
@@ -191,7 +264,7 @@
             <p class="sidebar-note">
               Projetos 100% gratuitos. Doe qualquer valor via Pix ou Ko-fi para apoiar novas versões!
             </p>
-            <button type="button" class="btn btn-primary btn-block" data-nav="apoiar">
+            <button type="button" class="btn btn-indie btn-block" data-nav="apoiar">
               Ver Página de Apoio
             </button>
           </div>
@@ -427,7 +500,7 @@
               href="#"
               target="_blank"
               rel="noopener noreferrer"
-              class="btn btn-primary"
+              class="btn btn-download"
             >
               Baixar Agora
             </a>
