@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "studio": "INSANIX STUDIO",
+  "siteUrl": "https://insanixstudio.com.br",
+  "feedUrl": "https://insanixstudio.com.br/updates.json",
+  "generatedAt": "2026-11-18T20:33:02.502Z",
+  "projects": {
+    "desktop-organizer-pro": {
+      "id": "desktop-organizer-pro",
+      "category": "app",
+      "title": "DesktopOrganizerPro",
+      "latestVersion": "v1.0.0",
+      "releaseDate": "2026-11-18",
+      "size": "62.6 MB",
+      "sha256": "B86A250D215505B3A235158D26B57C4D14AC1751DDA7E13EF364F0EB4E15A2A2",
+      "downloadUrl": "https://github.com/clevysson/desktop-organizer-pro/releases/download/v1.0.0/DesktopOrganizerPro-v1.0.0-win64.zip",
+      "releasePageUrl": "https://insanixstudio.com.br/?projeto=desktop-organizer-pro",
+      "latestNotes": "v1.0.0 — Lançamento oficial inicial: Fences translúcidos com DWM Acrylic Blur, Portais de Pasta com atualização em tempo real, triagem automática por regras, limpeza automática de atalhos de apps desinstalados, personalização de ícones (presets e imagens próprias), modo Fixo Sempre Aberto / Modo Cortina, perfis rápidos, alinhamento automático e atalho global Ctrl+Alt+F.",
+      "changelog": [
+        "v1.0.0 — Lançamento oficial inicial: Fences translúcidos com DWM Acrylic Blur, Portais de Pasta com atualização em tempo real, triagem automática por regras, limpeza automática de atalhos de apps desinstalados, personalização de ícones (presets e imagens próprias), modo Fixo Sempre Aberto / Modo Cortina, perfis rápidos, alinhamento automático e atalho global Ctrl+Alt+F."
+      ]
+    },
+    "disklens-pro": {
+      "id": "disklens-pro",
+      "category": "app",
+      "title": "DiskLens Pro",
+      "latestVersion": "v2.0.0",
+      "releaseDate": "2026-11-18",
+      "size": "56.5 MB",
+      "sha256": "A62710DECE94FF7AAF6FE5971CF042AD4800324DD8FE40EEBD1587F71DA5D502",
+      "downloadUrl": "https://github.com/clevysson/disklens-pro/releases/download/v2.0.0/DiskLensPro-v2.0.0-win-x64.zip",
+      "releasePageUrl": "https://insanixstudio.com.br/?projeto=disklens-pro",
+      "latestNotes": "v2.0.0 — Adicionado modo Galeria Visual de miniaturas paginada, Lightbox ampliado com navegação por setas, ordenação global, inspeção de arquivos TAR/TAR.GZ, detecção expandida de caches (AMD, Photoshop IA, CrashDumps, pip, Roblox), preservação opcional de subpastas ao mover arquivos e dashboard inicial de discos.",
+      "changelog": [
+        "v2.0.0 — Adicionado modo Galeria Visual de miniaturas paginada, Lightbox ampliado com navegação por setas, ordenação global, inspeção de arquivos TAR/TAR.GZ, detecção expandida de caches (AMD, Photoshop IA, CrashDumps, pip, Roblox), preservação opcional de subpastas ao mover arquivos e dashboard inicial de discos.",
+        "v1.0.0 — Versão inicial com varredura paralela Win32/NTFS, agrupamento por extensões e categorias, Treemap interativo, detector de duplicados SHA-256, prévia visual com player de vídeo/áudio e limpeza segura para a Lixeira."
+      ]
+    },
+    "kxp-emulator": {
+      "id": "kxp-emulator",
+      "category": "app",
+      "title": "KXP Emulador",
+      "latestVersion": "v1.0.0",
+      "releaseDate": "2026-11-18",
+      "size": "1.58 GB",
+      "sha256": "D1378D6CCD9C32725B3B10765F40208C22F15DFC8296EA4F48B5E34D2A143F33",
+      "downloadUrl": "https://github.com/clevysson/kxp-emulator/releases/download/v1.0.0/KXP-Emulador-v1.0.0.zip",
+      "releasePageUrl": "https://insanixstudio.com.br/?projeto=kxp-emulator",
+      "latestNotes": "v1.0.0 — Lançamento oficial portátil: KXP Desktop Gaming em tela cheia real (F11) e janela sem bordas, tela de carregamento dedicada com shader warm-up, Mapeador Pro completo com 11 tipos de controle e física multitouch dual-channel, presets prontos (Free Fire, MOBA, Arcade), HUD oculto por padrão até ser ativado pelo usuário, instalador rápido de APK e app Kulefi Ofertas integrado.",
+      "changelog": [
+        "v1.0.0 — Lançamento oficial portátil: KXP Desktop Gaming em tela cheia real (F11) e janela sem bordas, tela de carregamento dedicada com shader warm-up, Mapeador Pro completo com 11 tipos de controle e física multitouch dual-channel, presets prontos (Free Fire, MOBA, Arcade), HUD oculto por padrão até ser ativado pelo usuário, instalador rápido de APK e app Kulefi Ofertas integrado."
+      ]
+    }
+  }
+}
